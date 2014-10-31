@@ -114,25 +114,25 @@ devops@workstation3 ~ $
 Edit /etc/udev/rules.d/70-persistent-net.rules 
 
 #### Setup the repository mirror
+```
+sudo apt-get update
+sudo apt-get dist-upgrade
+reboot now
 
+sudo add-apt-repository cloud-archive:juno
+```
 
 # http://www.unixmen.com/setup-local-repository-ubuntu-14-0413-1013-04-server/
 # http://unixrob.blogspot.com/2012/05/create-apt-mirror-with-ubuntu-1204-lts.html
 
-sudo apt-get install -y apache2
-sudo apt-get install -y apt-mirror
-sudo mkdir -p /data/apt-mirror
+```
+sudo apt-get install -y apache2 apt-mirror
 
-sudo vi /etc/apt/mirror.list
-```
-set base_path    /data/apt-mirror
-```
-Comment out #deb-src entries
+vi /etc/apt/mirror.list
+deb http://ubuntu-cloud.archive.canonical.com/ubuntu trusty-updates/juno main
 
 sudo apt-mirror
-
-sudo add-apt-repository cloud-archive:juno
-sudo add-apt-repository cloud-archive:tools
+```
 
 
 

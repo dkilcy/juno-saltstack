@@ -122,8 +122,8 @@ reboot now
 sudo add-apt-repository cloud-archive:juno
 ```
 
-# http://www.unixmen.com/setup-local-repository-ubuntu-14-0413-1013-04-server/
-# http://unixrob.blogspot.com/2012/05/create-apt-mirror-with-ubuntu-1204-lts.html
+http://www.unixmen.com/setup-local-repository-ubuntu-14-0413-1013-04-server/
+http://unixrob.blogspot.com/2012/05/create-apt-mirror-with-ubuntu-1204-lts.html
 
 ```
 sudo apt-get install -y apache2 apt-mirror
@@ -132,6 +132,12 @@ vi /etc/apt/mirror.list
 deb http://ubuntu-cloud.archive.canonical.com/ubuntu trusty-updates/juno main
 
 sudo apt-mirror
+
+sudo apt-get install apache2
+
+sudo ln -s /var/spool/apt-mirror/mirror/archive.ubuntu.com/ubuntu /var/www/html/ubuntu
+sudo ln -s /var/spool/apt-mirror/mirror/ubuntu-cloud.archive.canonical.com/ubuntu /var/www/html/openstack-juno
+
 ```
 
 

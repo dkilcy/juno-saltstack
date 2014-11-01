@@ -26,18 +26,18 @@ Assigned to compute1 :
 | Serial #     | if   | MAC address       | Bond  | IP Address | Domain |
 |--------------|------|-------------------|-------|------------|--------|
 | NM13CS009402 | eth0 | 00:25:90:f1:0c:6c | bond0 | 10.0.0.31 | mgmt
-|              | eth1 | 00:25:90:f1:0c:6d | bond0 | " | "
-|              | eth2 | 00:25:90:f1:0c:6e | bond1 | 10.0.1.31 | vm  
-|              | eth3 | 00:25:90:f1:0c:6f | bond1 | " | "
+| | eth1 | 00:25:90:f1:0c:6d | bond0 | " | "
+| | eth2 | 00:25:90:f1:0c:6e | bond1 | 10.0.1.31 | vm  
+| | eth3 | 00:25:90:f1:0c:6f | bond1 | " | "
 
 Assigned to compute2 :
 
-| Serial #     | if   | MAC address       | Bond  | IP Address     | Domain |
-|--------------|------|-------------------|-------|----------------|--------|
-| NM13CS | eth0 | 00:25:90:F1:20:C3 |
-|              | eth1 | |
-|              | eth2 | |
-|              | eth3 | |
+| Serial #     | if   | MAC address       | Bond  | IP Address | Domain |
+|--------------|------|-------------------|-------|------------|--------|
+| NM13CS010012 | eth0 | 00:25:90:f1:0e:58 | bond0 | 10.0.0.32 | mgmt
+| | eth1 | 00:25:90:f1:0e:59 | bond0 | " | "
+| | eth2 | 00:25:90:f1:0e:5a | bond1 | 10.0.1.32 | vm
+| | eth3 | 00:25:90:f1:0e:5b | bond1 | " | "
 
 Notes:
 

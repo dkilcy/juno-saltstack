@@ -1,9 +1,10 @@
 
-Ubuntu Ethernet Bonding
-http://www.paulmellors.net/ubuntu-server-14-04-lts-nic-bonding/
+#### Ubuntu Ethernet Bonding
 
+```
 sudo apt-get install ifenslave-2.6
 sudo vi /etc/modules
+
 # /etc/modules: kernel modules to load at boot time.
 #
 # This file contains the names of kernel modules that should be loaded
@@ -47,4 +48,8 @@ bond-slaves none
 
 reboot
 # cat /proc/net/bonding/bond0
+```
 
+References:
+
+[http://www.paulmellors.net/ubuntu-server-14-04-lts-nic-bonding/]

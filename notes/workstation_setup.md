@@ -1,5 +1,18 @@
 
-## Networking
+## Workstation setup
+
+The workstation acts in the capacity of the utility node in OpenStack
+
+This document explains the steps to:
+1. Install the OS from DVD
+2. Setup static networking
+3. Setup the apt mirror
+4. Configure DHCP
+5. 
+
+### Install Ubuntu Desktop 14.04.1 on workstation node
+
+### Post-Install configuraton steps
 
 #### Disable automatic network management
 
@@ -122,9 +135,6 @@ reboot now
 sudo add-apt-repository cloud-archive:juno
 ```
 
-http://www.unixmen.com/setup-local-repository-ubuntu-14-0413-1013-04-server/
-http://unixrob.blogspot.com/2012/05/create-apt-mirror-with-ubuntu-1204-lts.html
-
 ```
 sudo apt-get install -y apache2 apt-mirror
 
@@ -139,6 +149,29 @@ sudo ln -s /var/spool/apt-mirror/mirror/archive.ubuntu.com/ubuntu /var/www/html/
 sudo ln -s /var/spool/apt-mirror/mirror/ubuntu-cloud.archive.canonical.com/ubuntu /var/www/html/openstack-juno
 
 ```
+
+### DHCP Server setup
+
+sudo apt-get install isc-dhcp-server -y
+
+vi /etc/default/isc-dhcp-server
+vi /etc/dhcp/dhcpd.conf
+
+service isc-dhcp-server restart
+
+### Discovering MAC addresess on network
+
+sudo apt-get install nmap
+sudo nmap -O 10.0.0.0/24
+
+References:
+[http://www.unixmen.com/setup-dhcp-server-ubuntu-14-04-lts-server/]
+[http://www.linux.com/learn/tutorials/470979-who-and-what-is-on-my-network-probing-your-network-with-linux]
+
+
+References:
+[http://www.unixmen.com/setup-local-repository-ubuntu-14-0413-1013-04-server/]
+[http://unixrob.blogspot.com/2012/05/create-apt-mirror-with-ubuntu-1204-lts.html]
 
 
 

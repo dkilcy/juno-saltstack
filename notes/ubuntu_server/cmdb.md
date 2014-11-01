@@ -25,10 +25,10 @@ Assigned to compute1 :
 
 | Serial #     | if   | MAC address       | Bond  | IP Address     | Domain |
 |--------------|------|-------------------|-------|----------------|--------|
-| NM13CS009402 | eth0 | 00:25:90:F1:20:34 | bond0 | 10.0.0.31      | mgmt
-|              | eth1 |                   | bond0 | "              | "
-|              | eth2 |                   | bond1 | 10.0.1.31      | vm  
-|              | eth3 |                   | bond1 | "              | "
+| NM13CS009402 | eth0 | 00:25:90:f1:0c:6c | bond0 | 10.0.0.31      | mgmt
+|              | eth1 | 00:25:90:f1:0c:6d | bond0 | "              | "
+|              | eth2 | 00:25:90:f1:0c:6e | bond1 | 10.0.1.31      | vm  
+|              | eth3 | 00:25:90:f1:0c:6f | bond1 | "              | "
 
 Assigned to compute2 :
 
@@ -38,6 +38,9 @@ Assigned to compute2 :
 |              | eth1 | |
 |              | eth2 |  |
 |              | eth3 |  |
+
+Notes:
+
 
 References:
 

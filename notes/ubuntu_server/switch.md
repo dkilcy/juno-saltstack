@@ -29,4 +29,5 @@ TL-SG3424(config)#interface vlan 1
 TL-SG3424(config-if)#ip address 10.0.0.2 255.255.255.0
 
 
+```
 

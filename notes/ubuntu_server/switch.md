@@ -22,6 +22,7 @@ sudo picoterm /dev/ttyS0 -b 38400
 Changing the IP address 
 ```
 TL-SG3424>enable
+TL-SG3216#configex
 TL-SG3424(config)#show vlan
 TL-SG3424(config)#interface vlan 1 
 TL-SG3424(config-if)#ip address 10.0.0.2 255.255.255.0

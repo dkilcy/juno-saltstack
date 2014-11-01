@@ -165,11 +165,9 @@ sudo apt-get install nmap
 sudo nmap -O 10.0.0.0/24
 
 References:
+
 [http://www.unixmen.com/setup-dhcp-server-ubuntu-14-04-lts-server/]
 [http://www.linux.com/learn/tutorials/470979-who-and-what-is-on-my-network-probing-your-network-with-linux]
-
-
-References:
 [http://www.unixmen.com/setup-local-repository-ubuntu-14-0413-1013-04-server/]
 [http://unixrob.blogspot.com/2012/05/create-apt-mirror-with-ubuntu-1204-lts.html]
 

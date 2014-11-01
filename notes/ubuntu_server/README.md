@@ -1,6 +1,10 @@
 
-### Create a custom Ubuntu Server 14.04 image 
+### Ubuntu Server 14.04.1 setup
 
+Create a bootable DVD t with a custom image to automate the install as much as possible
+Deploy th custom image to all the OpenStack nodes.
+
+##### Create a custom Ubuntu Server 14.04 image 
 
 ```
 sudo -i

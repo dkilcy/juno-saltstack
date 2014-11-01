@@ -47,7 +47,7 @@ one (and only one) of the mgmt interface(s) is plugged into the switch.
 
 2. Plug the DVDROM into the blue USB port and insert the media
 3. Power up the Supermicro. It will detect the DVDROM and boot from it.  If it doesn't hit F11 to set the boot device.
-4. From the console verify **Install Ubuntuerver with Custom Config** is selected. Press Enter
+4. From the console verify **Install Ubuntu Server with Custom Config** is selected. Press Enter
 5. TODO: Install stops at the 'Configure the network' screen.  Select the appropriate interface and press Enter.
 For controller and network nodes select p2p1 network interface (add ksdevice=p2p1 to boot options)
 For compute and storage nodes select eth0 
@@ -62,6 +62,7 @@ For compute and storage nodes select eth0
 ##### Notes
 
 Alt-Function keys switch between TTYs:
+
 1. Alt+F1 - Installer dialog
 2. Alt+F2 - shell
 3. Alt+F3 - shell

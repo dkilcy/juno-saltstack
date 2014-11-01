@@ -19,15 +19,16 @@ sudo apt-get install picoterm
 sudo picoterm /dev/ttyS0 -b 38400
 ```
 
+Changing the IP address 
 ```
 TL-SG3424>enable
-TL-SG3424(config)#show ip http secure-server                                   
-TL-SG3424(config)#show running-config?
 TL-SG3424(config)#show vlan
-
 TL-SG3424(config)#interface vlan 1 
 TL-SG3424(config-if)#ip address 10.0.0.2 255.255.255.0
 
+ping 10.0.0.2
+http://10.0.0.2
+admin/admin
 
 ```
 

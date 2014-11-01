@@ -51,13 +51,15 @@ one (and only one) of the mgmt interface(s) is plugged into the switch.
 5. TODO: Install stops at the 'Configure the network' screen.  Select the appropriate interface and press Enter.
 For controller and network nodes select p2p1 network interface (add ksdevice=p2p1 to boot options)
 For compute and storage nodes select eth0 
-6. TODO: Install stops at the 'Partition disks' screen.  Hit the left-arrow to select Yes and press Enter.
 7. DVD is ejected from the DVDROM.  System reboots and loads OS from /dev/sda.
 8. The console appears with the board-serial-number as the hostname.
 9. Login and verify connectivity
 
+If there are existing partitions, the install will stop for input after step 5
 - Goes to Detected existing mount - enter to unmount
 - Goes to red Partition disks screen : Unable o automatically remove LVM data
+
+Use GParted Live media to destroy any existing partitions and retry.
 
 ##### Notes
 

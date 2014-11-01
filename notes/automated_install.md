@@ -63,7 +63,7 @@ Alt-Function keys switch between TTYs:
 3. Alt+F3 - shell
 4. Output of syslog: tail -f /var/log/syslog
 
-
+```
 # apt-get remove hwdata
 # wget ftp://mirror.ovh.net/mirrors/ftp.debian.org/debian/pool/main/h/hwdata/hwdata_0.234-1_all.deb
 # dpkg -i hwdata_0.234-1_all.deb
@@ -73,7 +73,7 @@ Alt-Function keys switch between TTYs:
 # apt-get install tasksel
 
 devops@workstation3:~$ sudo tasksel --list-tasks
-
+```
 
 References:
 

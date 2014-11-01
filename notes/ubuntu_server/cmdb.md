@@ -25,10 +25,10 @@ Assigned to compute1 :
 
 | Serial #     | if   | MAC address       | Bond  | IP Address  |
 |--------------|------|-------------------|-------|-------------|
-| NM13CS010809 | eth0 | 00:25:90:f1:0d:a8 |
-|              | eth1 | 00:25:90:f1:0d:a9 |
-|              | eth2 | 00:25:90:f1:0d:aa |
-|              | eth3 | 00:25:90:f1:0d:ab |
+| NM13CS009402 | eth0 | 00:25:90:f1:0c:6c |
+|              | eth1 | 00:25:90:f1:0c:6d |
+|              | eth2 | 00:25:90:f1:0c:6e |
+|              | eth3 | 00:25:90:f1:0c:6f |
 
 Assigned to compute2 :
 

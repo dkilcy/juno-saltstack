@@ -34,13 +34,21 @@ Web portal default account/password is admin/admin
 
 ### Set up VLANs
 
-Create VLAN 2 and assign ports
-Create VLAN 3 and assign ports
-Set trunk ports and add VLANs
+VLAN->VLAN Config Tab
+Create VLAN 2 (VM) and assign ports, set Link Type for trunk ports
+Create VLAN 3 (Public) and assign ports, set Link Type for trunk ports
 
 ### Setting up LAG (LACP)
 
+Spannng Tree->STP Config tab
+- Enable Spanning Tree Protocol (STP) on both switches 
 
+Switching->LAG
+Click LACP Config tab
+24-port is priority over 16 port switches
+- Select ports 15-16 or 23-24 
+- For 23-24, use port priority 16384
+- Click apply
 
 #### References
 

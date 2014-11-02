@@ -37,14 +37,15 @@ bond-master bond0
 # bond0 is configured using static network information.
 auto bond0
 iface bond0 inet static
-address x.x.x.x
-gateway x.x.x.x
-netmask x.x.x.x
-dns-nameservers x.x.x.x x.x.x.x
-dns-search xxxxxxx
+address 10.0.0.x
+#gateway 10.0.0.1
+netmask 255.255.255.0
+dns-nameservers 10.0.0.7
+dns-search mgmt
 bond-mode balance-tlb
 bond-miimon 100
 bond-slaves none
+mtu 9000
 
 reboot
 # cat /proc/net/bonding/bond0

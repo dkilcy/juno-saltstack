@@ -82,7 +82,40 @@ Alt-Function keys switch between TTYs:
 devops@workstation3:~$ sudo tasksel --list-tasks
 ```
 
-References:
+#### Notes
+
+
+Import the OpenStack package key
+```
+root@NM13CS010012:~# apt-get install ubuntu-cloud-keyring
+Reading package lists... Done
+Building dependency tree       
+Reading state information... Done
+The following packages were automatically installed and are no longer required:
+  git git-man liberror-perl libjs-jquery python-async python-git python-gitdb
+  python-smmap
+Use 'apt-get autoremove' to remove them.
+The following NEW packages will be installed:
+  ubuntu-cloud-keyring
+0 upgraded, 1 newly installed, 0 to remove and 3 not upgraded.
+Need to get 5,086 B of archives.
+After this operation, 34.8 kB of additional disk space will be used.
+Get:1 http://10.0.0.7/ubuntu/ trusty/universe ubuntu-cloud-keyring all 2012.08.14 [5,086 B]
+Fetched 5,086 B in 0s (30.1 kB/s)                 
+Selecting previously unselected package ubuntu-cloud-keyring.
+(Reading database ... 60425 files and directories currently installed.)
+Preparing to unpack .../ubuntu-cloud-keyring_2012.08.14_all.deb ...
+Unpacking ubuntu-cloud-keyring (2012.08.14) ...
+Setting up ubuntu-cloud-keyring (2012.08.14) ...
+Importing ubuntu-cloud.archive.canonical.com keyring
+OK
+Processing ubuntu-cloud.archive.canonical.com removal keyring
+gpg: /etc/apt/trustdb.gpg: trustdb created
+OK
+root@NM13CS010012:~#
+```
+
+##### References
 
 [https://help.ubuntu.com/community/KickstartCompatibility]  
 [http://askubuntu.com/questions/457528/how-do-i-create-an-efi-bootable-iso-of-a-customized-version-of-ubuntu]  

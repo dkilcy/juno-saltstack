@@ -84,8 +84,8 @@ devops@workstation3:~$ sudo tasksel --list-tasks
 
 References:
 
-[https://help.ubuntu.com/community/KickstartCompatibility]
-[http://askubuntu.com/questions/457528/how-do-i-create-an-efi-bootable-iso-of-a-customized-version-of-ubuntu]
-[http://askubuntu.com/questions/122505/how-do-i-create-a-completely-unattended-install-of-ubuntu]
+[https://help.ubuntu.com/community/KickstartCompatibility]  
+[http://askubuntu.com/questions/457528/how-do-i-create-an-efi-bootable-iso-of-a-customized-version-of-ubuntu]  
+[http://askubuntu.com/questions/122505/how-do-i-create-a-completely-unattended-install-of-ubuntu]  
 
 

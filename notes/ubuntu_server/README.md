@@ -85,7 +85,7 @@ devops@workstation3:~$ sudo tasksel --list-tasks
 #### Notes
 
 
-Import the OpenStack package key
+Import the OpenStack package key and the SaltStack key
 ```
 root@NM13CS010012:~# apt-get install ubuntu-cloud-keyring
 Reading package lists... Done
@@ -112,7 +112,8 @@ OK
 Processing ubuntu-cloud.archive.canonical.com removal keyring
 gpg: /etc/apt/trustdb.gpg: trustdb created
 OK
-root@NM13CS010012:~#
+root@NM13CS010012:~# wget -q -O- "http://10.0.0.7/saltstack-salt.gpg" | apt-key add - 
+OK
 ```
 
 ##### References

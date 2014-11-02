@@ -33,6 +33,9 @@ address 10.0.0.7
 netmask 255.255.255.0
 #gateway 10.0.0.1
 dns-search mgmt vm
+dns-nameservers 10.0.0.7
+mtu 9000
+
 
 auto eth1
 iface eth1 inet static

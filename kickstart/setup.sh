@@ -3,7 +3,7 @@
 setenforce 0
 
 cd /home/devops
-git clone https://github.com/dkilcy/juno-saltstack/juno-saltstack.git
+git clone https://github.com/dkilcy/juno-saltstack.git
 chown -R devops.devops /home/devops/git
 
 mv /etc/hosts /etc/hosts.orig

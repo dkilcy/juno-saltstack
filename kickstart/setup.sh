@@ -9,6 +9,8 @@ cd /home/devops/git
 git clone https://github.com/dkilcy/juno-saltstack.git
 chown -R devops.devops /home/devops/git
 
+cd ~
+
 mv /etc/hosts /etc/hosts.`date +%s`
 ln -s /home/devops/git/juno-saltstack/kickstart/etc/hosts /etc/hosts
 

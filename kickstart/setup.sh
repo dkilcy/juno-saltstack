@@ -2,15 +2,18 @@
 
 setenforce 0
 
-cd /home/devops
+mkdir -p /home/devops/git
+chown devops.devops /home/devops/git
+
+cd /home/devops/git
 git clone https://github.com/dkilcy/juno-saltstack.git
 chown -R devops.devops /home/devops/git
 
-mv /etc/hosts /etc/hosts.orig
+mv /etc/hosts /etc/hosts.`date +%s`
 ln -s /home/devops/git/juno-saltstack/kickstart/etc/hosts /etc/hosts
 
 mkdir -p /root/staging/etc/yum.repos.d/
-mv /etc/yum.repos.d/* /root/staging/etc/yum.repos.d
+mv -f /etc/yum.repos.d/* /root/staging/etc/yum.repos.d/
 ln -s /home/devops/git/juno-saltstack/kickstart/etc/yum.repos.d/local.repo /etc/yum.repos.d/local.repo
 
 ### Add EPEL and OpenStack repository
@@ -57,7 +60,7 @@ ntpq -p
 
 yum install -y dhcp
 
-mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.orig
+mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.`date +%s`
 ln -s /home/devops/git/juno-saltstack/kickstart/etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf
 
 service dhcpd restart

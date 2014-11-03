@@ -20,6 +20,6 @@ gpgcheck=0
 enabled=1
 [openstack-juno]
 name=OpenStack Juno Repository
-baseurl=http://yumrepo/repo/centos/7/x86_64/openstack-icehouse
+baseurl=http://yumrepo/repo/centos/7/x86_64/openstack-juno
 gpgcheck=0
 enabled=1

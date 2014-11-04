@@ -12,7 +12,13 @@ cp -rT in/ out/
 2. Modify the contents of the original ISO to load the kickstart configuration
 
 - Change to the `out` directory: `cd out`
-- Create a directory under `isolinux/ks` and copy the `ks.cfg` file to this directory
+- Create a directory under `isolinux` called `ks` and copy the `ks.cfg` file to this directory: 
+
+```
+mkdir isolinux/ks
+cp ~/git/juno-saltstack/kickstart/centos7-minimal/ks.cfg ./ks/
+```
+
 - Edit the `isolinux/isolinux.cfg` file and do the following:
     - Add `inst.ks=cdrom:/dev/cdrom:/ks/ks.cfg` to the **append** entry for the `label linux` entry. 
     - Remove the `quiet` option.

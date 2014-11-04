@@ -12,11 +12,11 @@ chown -R devops.devops /home/devops/git
 cd ~
 
 mv /etc/hosts /etc/hosts.`date +%s`
-ln -s /home/devops/git/juno-saltstack/kickstart/etc/hosts /etc/hosts
+cp /home/devops/git/juno-saltstack/kickstart/etc/hosts /etc/hosts
 
 mkdir -p /root/staging/etc/yum.repos.d/
 mv -f /etc/yum.repos.d/* /root/staging/etc/yum.repos.d/
-ln -s /home/devops/git/juno-saltstack/kickstart/etc/yum.repos.d/local.repo /etc/yum.repos.d/local.repo
+cp /home/devops/git/juno-saltstack/kickstart/etc/yum.repos.d/local.repo /etc/yum.repos.d/local.repo
 
 ### Add EPEL and OpenStack repository
 

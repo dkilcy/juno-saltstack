@@ -12,21 +12,18 @@ cp -rT in/ out/
 2. Modify the contents of the original ISO to load the kickstart configuration
 
 - Change to the `out` directory: `cd out`
-
-- Copy the `ks.cfg` file to the `out` directory
-
-Edit the isolinux/isolinux.cfg file and do the following:
-
-- Add `inst.ks=cdrom:/dev/cdrom:/ks.cfg` to the **append** entry for the `label linux` entry. 
-- Remove the `quiet` option.
-- Update the menu label 
-- Save the file
+- Create a directory called `ks` and the `ks.cfg` file to this directory
+- Edit the `isolinux/isolinux.cfg` file and do the following:
+    - Add `inst.ks=cdrom:/dev/cdrom:/ks/ks.cfg` to the **append** entry for the `label linux` entry. 
+    - Remove the `quiet` option.
+    - Update the menu label 
+    - Save the file
 
 3. Create the new ISO image
 
 ```
 chmod 664 isolinux/isolinux.bin
-mkisofs -o ../CentOS-7.0-1406-x86_64-Minimal.2014-10-04-1.iso -b isolinux.bin -c boot.cat -no-emul-boot \
+mkisofs -o ../CentOS-7.0-1406-x86_64-Minimal.2014-11-04-1.iso -b isolinux.bin -c boot.cat -no-emul-boot \
   -V 'CentOS 7 x86_64' \
   -boot-load-size 4 -boot-info-table -R -J -v -T isolinux/
 ```

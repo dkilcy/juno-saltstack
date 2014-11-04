@@ -16,7 +16,7 @@ cp -rT in/ out/
 
 ```
 mkdir isolinux/ks
-cp ~/git/juno-saltstack/kickstart/centos7-minimal/ks.cfg ./ks/
+cp ~/git/juno-saltstack/kickstart/centos7-minimal/ks.cfg isolinux/ks/
 ```
 
 - Edit the `isolinux/isolinux.cfg` file and do the following:

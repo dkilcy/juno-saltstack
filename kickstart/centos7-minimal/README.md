@@ -12,7 +12,7 @@ cp -rT in/ out/
 2. Modify the contents of the original ISO to load the kickstart configuration
 
 - Change to the `out` directory: `cd out`
-- Create a directory called `ks` and the `ks.cfg` file to this directory
+- Create a directory under `isolinux/ks` and copy the `ks.cfg` file to this directory
 - Edit the `isolinux/isolinux.cfg` file and do the following:
     - Add `inst.ks=cdrom:/dev/cdrom:/ks/ks.cfg` to the **append** entry for the `label linux` entry. 
     - Remove the `quiet` option.

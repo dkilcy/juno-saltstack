@@ -13,6 +13,11 @@ cp -rT in/ out/
 
 - Change to the `out` directory: `cd out`
 - Create a directory called `ks` and copy the `ks.cfg` file to this directory
+```
+mkdir ks
+cp ~/git/juno-saltstack/kickstart/centos7-minimal/ks.cfg ./ks/
+```
+
 - Edit the `isolinux/isolinux.cfg` file and do the following:
     - Add `inst.ks=cdrom:/dev/cdrom:/ks/ks.cfg` to the **append** entry for the `label linux` entry. 
     - Remove the `quiet` option.

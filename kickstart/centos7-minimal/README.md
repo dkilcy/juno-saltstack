@@ -16,7 +16,7 @@ Change to the `out` directory
 cd out
 ```
 - Copy the `ks.cfg` file to the `out` directory
-- Add `inst.ks=cdrom:/dev/cdrom:/ks/ks.cfg` to the **append** entry for the `label linux` entry. 
+- Add `inst.ks=cdrom:/dev/cdrom:/ks.cfg` to the **append** entry for the `label linux` entry. 
 - Remove the `quiet` option.
 - Update the menu label 
 - Save the file

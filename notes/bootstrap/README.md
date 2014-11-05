@@ -41,4 +41,4 @@ Steps:
 2. Accept minion key on salt master  
 3. run highstate  
 
-[a link](node/README.md)
+[Node Setup](node/README.md)

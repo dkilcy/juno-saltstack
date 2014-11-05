@@ -2,8 +2,8 @@
 
 ##### Overview
 
-The environment consists of multiple bare-metal servers that serve the role of either **workstation** or **node**.
-A **workstation** runs the CentOS 7 GNOME desktop.  It acts as the role of a utility node in OpenStack.  
+The environment consists of multiple bare-metal servers that serve the role of either **workstation** or **node**.  
+A **workstation** runs the CentOS 7 GNOME desktop.  It acts as the role of a utility node in OpenStack.    
 It provides the following services for nodes:
 
 - Repository mirror and Apache

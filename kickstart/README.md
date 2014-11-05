@@ -1,3 +1,19 @@
-### Workstation and Kickstart setup
+### Workstation and Node setup
+
+The environment consists of multiple bare-metal servers 
+that serve the role of either **workstation** or **node**.
+
+A **workstation** runs the CentOS 7 GNOME desktop.
+It acts as the role of a utility node in OpenStack.  
+It provides services for nodes.
+- Repository mirror and Apache
+- NTPD
+- DHCP Server
+- Salt Master
+The workstation is configured manually.
+
+A *node* runs the CentOS 7 minimal install.  
+They are installed using an automated installer built with kickstart.
+
 
 [a link](setup.sh)

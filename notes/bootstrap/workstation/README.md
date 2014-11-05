@@ -99,6 +99,12 @@ systemctl enable dhcpd
 10. Setup salt master  
 ```
 yum install salt-master
+
+cd srv
+ln -s /home/devops/git/juno-saltstack/salt .
+ln -s /home/devops/git/juno-saltstack/salt .
+ln -s /home/devops/git/juno-saltstack/pillar .
+
 systemctl restart salt-master
 systemctl enable salt-master
 ```

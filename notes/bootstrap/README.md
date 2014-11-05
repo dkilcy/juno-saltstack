@@ -17,20 +17,6 @@ A **node** runs the CentOS 7 minimal install.  They are installed using an autom
 
 ### Workstation Setup
 
-Steps:
-
-1. Install CentOS 7 GNOME desktop on Workstation  
-2. Set security policies  
-3. Configure GitHub and pull juno-saltstack  
-4. Set the hosts file  
-5. Add the EPEL and OpenStack repositories  
-6. Create the repository mirror  
-7. Setup apache  
-8. Setup NTPD  
-9. Setup DHCP server   
-10. Setup salt master  
-11. Create the kickstart image for nodes  
-
 [Workstation Setup](workstation/README.md)
 
 ### Node Setup

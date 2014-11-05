@@ -3,7 +3,7 @@ juno-saltstack
 
 #### Task list
 
-1. [x] Setup Workstation
+
   1. [x] Install CentOS 7 GNOME Desktop
   2. [x] Set security policies
   3. [x] Configure GitHub and pull juno-saltstack

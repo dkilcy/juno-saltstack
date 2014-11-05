@@ -10,7 +10,7 @@ It provides the following services for nodes:
 - NTPD
 - DHCP Server
 - Salt Master
-- 
+
 The workstation is configured manually.
 
 A **node** runs the CentOS 7 minimal install.  They are installed using an automated installer built with kickstart.

@@ -1,7 +1,6 @@
 ### Node Setup
 
-
-Tasks:
+##### Tasks:
 
 1. [] Install CentOS 7 minimal on node using kickstar image  
 2. [] Accept minion key on salt master  

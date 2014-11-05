@@ -18,23 +18,23 @@
 
 1. Install CentOS 7 GNOME desktop on Workstation  
 
-2. Set security policies  
+2. Set security policies as root
 ```
 setenforce 0
 systemctl stop firewalld
 systemctl disable firewalld
 ```
 
-3. Configure GitHub and pull juno-saltstack  
+3. Configure GitHub and pull juno-saltstack as devops user
 ```
 mkdir ~/git ; cd ~/git
 git clone https://github.com/dkilcy/juno-saltstack.git
 ```
 
-4. Set the hosts file  
+4. Set the hosts file as root
 ```
 mv /etc/hosts /etc/hosts.`date +%s`
-cp /home/devops/git/juno-saltstack/kickstart/etc/hosts /etc/hosts
+cp /home/devops/git/juno-saltstack/files/workstation/etc/hosts /etc/hosts
 ```
 
 5. Add the EPEL and OpenStack repositories  
@@ -67,7 +67,7 @@ reposync -p /data/repo/centos/7/x86_64 --repoid=epel
 reposync -p /data/repo/centos/7/x86_64 --repoid=openstack-juno
 
 sed "s/gpgcheck=1/gpgcheck=1\nenabled=0/g" /etc/yum.repos.d/CentOS-Base.repo > /etc/yum.repos.d/CentOS-Base.repo
-cp /home/devops/git/juno-saltstack/kickstart/etc/yum.repos.d/local.repo /etc/yum.repos.d/local.repo
+cp /home/devops/git/juno-saltstack/files/workstation/etc/yum.repos.d/local.repo /etc/yum.repos.d/local.repo
 
 yum clean all
 yum update
@@ -91,7 +91,7 @@ ntpq -p
 ```
 yum install -y dhcp
 mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.`date +%s`
-cp /home/devops/git/juno-saltstack/kickstart/etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf
+cp /home/devops/git/juno-saltstack/files/workstation/etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf
 systemctl start dhcpd
 systemctl enable dhcpd
 ```

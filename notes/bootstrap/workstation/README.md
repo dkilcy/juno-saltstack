@@ -1,18 +1,19 @@
 ### Workstation Setup
 
-##### Overview
+##### Tasks:
 
-1. Install CentOS 7 GNOME desktop on Workstation  
-2. Set security policies  
-3. Configure GitHub and pull juno-saltstack  
-4. Set the hosts file  
-5. Add the EPEL and OpenStack repositories  
-6. Create the repository mirror  
-7. Setup apache  
-8. Setup NTPD  
-9. Setup DHCP server   
-10. Setup salt master  
-11. Create the kickstart image for nodes  
+1. [x] Setup Workstation
+  1. [x] Install CentOS 7 GNOME Desktop
+  2. [x] Set security policies
+  3. [x] Configure GitHub and pull juno-saltstack
+  4. [x] Set the hosts file
+  5. [x] Add the EPEL and OpenStack repositories
+  6. [x] Create the repository mirror
+  7. [x] Setup apache
+  8. [x] Setup NTPD
+  9. [x] Setup DHCP server
+  10. [x] Setup salt master
+  11. [x] Create the kickstart image for nodes
 
 #### Steps
 

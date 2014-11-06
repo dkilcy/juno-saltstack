@@ -18,3 +18,15 @@ enp0s20f1:
     - proto: none
     - ipaddr: {{ ipaddr }}
     - netmask: 255.255.255.0
+
+enp0s20f2:
+  network.managed:
+    - enabled: False
+    - type: eth
+
+enp0s20f3:
+  network.managed:
+    - enabled: False
+    - type: eth
+
+

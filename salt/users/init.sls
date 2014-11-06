@@ -6,6 +6,16 @@
     - text: 
       - export PS1="\e[1;31m[\u@\h \W]$ \e[m"
 
+/root/.vimrc:
+  file.managed:
+    - name: /root/.vimrc
+    - source: salt://vim/.vimrc
+    - mode: 644
+    - user: root
+    - group: root
+    - require:
+      - pkg: vim
+
 {% for user in user_list %}
 
 {{ user.name }}:

@@ -33,6 +33,9 @@
 10.0.0.53       object3.mgmt object3
 10.0.0.54       object4.mgmt object4
 
+10.0.1.21       network1.vm
+10.0.1.22       network2.vm
+
 10.0.1.31       compute1.vm
 10.0.1.32       compute2.vm
 10.0.1.33       compute3.vm
@@ -44,3 +47,4 @@
 
 192.168.1.11    controller1.pub
 192.168.1.12    controller2.pub
+

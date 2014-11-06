@@ -1,0 +1,8 @@
+DEVICE="teamX"
+DEVICETYPE="Team"
+ONBOOT="yes"
+BOOTPROTO="none"
+IPADDR=X.X.X.X
+NETMASK=255.255.255.0
+TEAM_CONFIG='{"runnner":{"name":"roundrobin"}}'
+MTU=9000

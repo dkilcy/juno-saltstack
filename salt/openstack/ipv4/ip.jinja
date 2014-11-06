@@ -1,0 +1,50 @@
+
+{% macro setup_team_intf(intf, team) %}
+
+/etc/sysconfig/network-scripts/ifcfg-{{ intf }}:
+  file.managed:
+    - name: /etc/sysconfig/network-scripts/ifcfg-{{ intf }}
+    - source: salt://openstack/ipv4/files/ifcfg-enp0s20fX
+    - mode: 644
+    - user: root
+    - group: root
+
+/etc/sysconfig/network-scripts/ifcfg-{{ intf }}_1:
+  file.replace:
+    - name: /etc/sysconfig/network-scripts/ifcfg-{{ intf }}
+    - pattern: enp0s20fX
+    - repl: {{ intf }}
+
+/etc/sysconfig/network-scripts/ifcfg-{{ intf }}_2:
+  file.replace:
+    - name: /etc/sysconfig/network-scripts/ifcfg-{{ intf }}
+    - pattern: teamX
+    - repl: {{ team }}
+
+{% endmacro %}
+
+{% macro setup_team_bond( team, ipaddr ) %}
+
+/etc/sysconfig/network-scripts/ifcfg-{{ team }}:
+  file.managed:
+    - name: /etc/sysconfig/network-scripts/ifcfg-{{ team }}
+    - source: salt://openstack/ipv4/files/ifcfg-teamX
+    - mode: 644
+    - user: root
+    - group: root
+
+/etc/sysconfig/network-scripts/ifcfg-{{ team }}_1:
+  file.replace:
+    - name: /etc/sysconfig/network-scripts/ifcfg-{{ team }}
+    - pattern: teamX
+    - repl: {{ team }}
+
+/etc/sysconfig/network-scripts/ifcfg-{{ team }}_2:
+  file.replace:
+    - name: /etc/sysconfig/network-scripts/ifcfg-{{ team }}
+    - pattern: X.X.X.X
+    - repl: {{ ipaddr }}
+
+{% endmacro %}
+
+

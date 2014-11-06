@@ -1,0 +1,5 @@
+DEVICE="enp0s20fX"
+DEVICETYPE="TeamPort"
+ONBOOT="yes"
+BOOTPROTO="none"
+TEAM_MASTER="teamX"

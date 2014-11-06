@@ -78,6 +78,8 @@ createrepo -g comps.xml /data/repo/centos/7/x86_64/base
 
 yum clean all
 yum update
+
+yum grouplist
 ```
 
 7. Setup apache  

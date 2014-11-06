@@ -3,4 +3,5 @@ base:
   '*':
     - users
     - pkg
+    - openstack
 

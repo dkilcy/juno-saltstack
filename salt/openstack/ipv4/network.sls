@@ -28,3 +28,9 @@ enp0s20f1:
 {% set ipaddr = salt['grains.get']('openstack_vm_ip') %}
 {{ setup_team_bond( team, ipaddr ) }}
 
+restart_networking:
+  cmd.wait:
+    - name: systemctl restart network
+    - watch:
+      - file: '/etc/sysconfig/network-scripts/ifcfg-{{ team }}'
+

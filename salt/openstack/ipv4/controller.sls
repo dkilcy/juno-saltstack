@@ -1,32 +1,35 @@
 
-{% set ipaddr = salt['grains.get']('openstack_mgmt_ip') %}
+{% from "openstack/ipv4/ip.jinja" import setup_team_intf with context %}
+{% from "openstack/ipv4/ip.jinja" import setup_team_bond with context %}
 
-enp0s20f0:
-  network.managed:
-    - enabled: True
-    - type: eth
-    - proto: none
-    - ipaddr: {{ ipaddr }}
-    - netmask: 255.255.255.0
+#system:
+#  network.system:
+#    - enabled: True
+#    - nozeroconf: True
+#    - require_reboot: False
+
+{% set team = 'team0' %}
+{% for intf in ['enp0s20f0','enp0s20f1'] %}
+  {{ setup_team_intf( intf, team ) }}
+{% endfor %}
+
+{% set ipaddr = salt['grains.get']('openstack_mgmt_ip') %}
+{{ setup_team_bond( team, ipaddr ) }}
+
+###
+
+{% set team = 'team1' %}
+{% for intf in ['enp0s20f2','enp0s20f3'] %}
+  {{ setup_team_intf( intf, team ) }}
+{% endfor %}
 
 {% set ipaddr = salt['grains.get']('openstack_pub_ip') %}
+{{ setup_team_bond( team, ipaddr ) }}
 
-enp0s20f1:
-  network.managed:
-    - enabled: True
-    - type: eth
-    - proto: none
-    - ipaddr: {{ ipaddr }}
-    - netmask: 255.255.255.0
 
-enp0s20f2:
-  network.managed:
-    - enabled: False
-    - type: eth
-
-enp0s20f3:
-  network.managed:
-    - enabled: False
-    - type: eth
-
+restart_networking:
+  cmd.wait:
+    - name: systemctl restart network
+    - watch:
+      - file: '/etc/sysconfig/network-scripts/ifcfg-{{ team }}'
 

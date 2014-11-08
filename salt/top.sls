@@ -26,7 +26,7 @@ base:
     - ntp
     - openstack.utils
     - openstack.auth
-#    - openstack.neutron.network
+    - openstack.neutron.network
     
   'compute*':
     - openstack.ipv4
@@ -35,7 +35,7 @@ base:
     - openstack.utils
     - openstack.auth
     - openstack.nova.compute
-#    - openstack.neutron.compute
+    - openstack.neutron.compute
 #    - openstack.ceilometer.compute
 
   'block*':

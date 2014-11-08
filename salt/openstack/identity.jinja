@@ -1,0 +1,48 @@
+
+{% macro configure_identity( component, filename, user, password ) %}
+
+{% set controller = salt['pillar.get']('openstack:controller') %}
+
+{{ component }}_auth_strategy:
+  openstack_config.present:
+    - filename: {{ filename }}
+    - section: DEFAULT
+    - parameter: auth_strategy
+    - value: keystone
+
+{{ component }}_auth_uri:
+  openstack_config.present:
+    - filename: {{ filename }}
+    - section: keystone_authtoken
+    - parameter: auth_uri
+    - value: http://{{ controller }}:5000/v2.0
+
+{{ component }}_identity_uri:
+  openstack_config.present:
+    - filename: {{ filename }}
+    - section: keystone_authtoken
+    - parameter: identity_uri
+    - value: http://{{ controller }}:35357
+
+{{ component }}_admin_user:
+  openstack_config.present:
+    - filename: {{ filename }}
+    - section: keystone_authtoken
+    - parameter: admin_user
+    - value: {{ user }}
+
+{{ component }}_admin_tenant_name:
+  openstack_config.present:
+    - filename: {{ filename }}
+    - section: keystone_authtoken
+    - parameter: admin_tenant_name
+    - value: service
+
+{{ component }}_admin_password:
+  openstack_config.present:
+    - filename: {{ filename }}
+    - section: keystone_authtoken
+    - parameter: admin_password
+    - value: {{ password }}
+
+{% endmacro %}

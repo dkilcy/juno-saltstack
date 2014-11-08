@@ -1,3 +1,5 @@
+{% from "openstack/rabbitmq.jinja" import configure_rabbitmq with context %}
+{% from "openstack/identity.jinja" import configure_identity with context %}
 
 {% from "mariadb/map.jinja" import mysql with context %}
 
@@ -13,8 +15,6 @@
 
 {% set ip_addr = salt['network.interfaces']()['team0']['inet'][0]['address'] %}
 
-{% set rabbit_pass = salt['pillar.get']('openstack:RABBIT_PASS') %}
-
 openstack_nova_compute:
   pkg.installed:
     - name: openstack-nova-compute
@@ -23,68 +23,9 @@ sysfsutils:
   pkg.installed:
     - name: sysfsutils
 
-nova_conf_rabbit:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: DEFAULT
-    - parameter: rpc_backend
-    - value: rabbit
-
-nova_conf_rabbit_host:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: DEFAULT
-    - parameter: rabbit_host
-    - value: {{ controller }}
-
-nova_conf_rabbit_password:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: DEFAULT
-    - parameter: rabbit_password
-    - value: {{ rabbit_pass }}
-
-nova_conf_auth_strategy:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: DEFAULT
-    - parameter: auth_strategy
-    - value: keystone
-
-nova_conf_auth_uri:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: keystone_authtoken
-    - parameter: auth_uri
-    - value: http://{{ controller }}:5000/v2.0
-
-nova_conf_identity_uri:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: keystone_authtoken
-    - parameter: identity_uri
-    - value: http://{{ controller }}:35357
-
-nova_conf_admin_user:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: keystone_authtoken
-    - parameter: admin_user
-    - value: nova
-
-nova_conf_admin_tenant_name:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: keystone_authtoken
-    - parameter: admin_tenant_name
-    - value: service
-
-nova_conf_admin_password:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: keystone_authtoken
-    - parameter: admin_password
-    - value: {{ nova_pass }}
+#################################################################
+{{ configure_rabbitmq( 'nova_compute', '/etc/nova/nova.conf' ) }}
+{{ configure_identity( 'nova_compute', '/etc/nova/nova.conf', 'nova', nova_pass ) }}
 
 nova_conf_my_ip:
   openstack_config.present:

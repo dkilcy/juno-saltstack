@@ -1,0 +1,33 @@
+
+{% macro configure_ovs_common( component, instance_tunnels_interface_ip_address )  %}
+
+##  in the [ovs] section, configure the Open vSwitch (OVS) agent:
+
+neutron_{{ component }}_add_ovs:
+  file.append:
+    - name: /etc/neutron/plugins/ml2/ml2_conf.ini
+    - text: '[ovs]'
+
+neutron_{{ component }}_local_ip:
+  openstack_config.present:
+    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
+    - section: ovs
+    - parameter: local_ip
+    - value: {{ instance_tunnels_interface_ip_address }}
+
+neutron_{{ component }}_tunnel_type:
+  openstack_config.present:
+    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
+    - section: ovs
+    - parameter: tunnel_type
+    - value: gre
+
+neutron_{{ component }}_enable_tunneling:
+  openstack_config.present:
+    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
+    - section: ovs
+    - parameter: enable_tunneling
+    - value: 'True'
+
+{% endmacro %}
+

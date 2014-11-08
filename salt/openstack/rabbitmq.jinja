@@ -1,0 +1,29 @@
+
+{% macro configure_rabbitmq( component, filename ) %}
+
+{% set controller = salt['pillar.get']('openstack:controller') %}
+{% set rabbit_pass = salt['pillar.get']('openstack:RABBIT_PASS') %}
+
+{{ component }}_conf_rabbit:
+  openstack_config.present:
+    - filename: {{ filename }}
+    - section: DEFAULT
+    - parameter: rpc_backend
+    - value: rabbit
+
+{{ component }}_conf_rabbit_host:
+  openstack_config.present:
+    - filename: {{ filename }}
+    - section: DEFAULT
+    - parameter: rabbit_host
+    - value: {{ controller }}
+
+{{ component }}_conf_rabbit_password:
+  openstack_config.present:
+    - filename: {{ filename }}
+    - section: DEFAULT
+    - parameter: rabbit_password
+    - value: {{ rabbit_pass }}
+
+{% endmacro %}
+

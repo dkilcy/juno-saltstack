@@ -1,3 +1,7 @@
+{% from "openstack/rabbitmq.jinja" import configure_rabbitmq with context %}
+{% from "openstack/identity.jinja" import configure_identity with context %}
+{% from "openstack/neutron/compute_common.jinja" import configure_compute_common with context %}
+{% from "openstack/neutron/networking_common.jinja" import configure_networking_common with context  %}
 
 {% from "mariadb/map.jinja" import mysql with context %}
 
@@ -13,9 +17,7 @@
 {% set metadata_secret = salt['pillar.get']('openstack:METADATA_SECRET') %}
 
 # TODO: figure out a better way to assign the nova_admin_tenant_id
-#{% set service_tenant_id = salt['pillar.get']('openstack:service_tenant_id','26be2f327660495a822e3b844cfb21e1') %}
-
-{% set rabbit_pass = salt['pillar.get']('openstack:RABBIT_PASS') %}
+{% set service_tenant_id = salt['pillar.get']('openstack:service_tenant_id','26be2f327660495a822e3b844cfb21e1') %}
 
 neutron_db:
   mysql_database.present:
@@ -110,88 +112,26 @@ neutron_controller_conf_connection:
     - parameter: connection
     - value: mysql://neutron:{{ neutron_dbpass }}@{{ mysql_host }}/neutron
 
-neutron_controller_conf_rabbit:
+#############################################################################
+{{ configure_rabbitmq( 'neutron_controller', '/etc/neutron/neutron.conf' ) }}
+{{ configure_identity( 'neutron_controller', '/etc/neutron/neutron.conf', 'neutron', neutron_pass) }}
+{{ configure_networking_common( 'controller' ) }}
+#################################################
+
+## e. In the [DEFAULT] section, configure Networking to notify Compute of network topology changes:
+
+neutron_controller_conf_notify_nova_on_port_status_changes:
   openstack_config.present:
     - filename: /etc/neutron/neutron.conf
     - section: DEFAULT
-    - parameter: rpc_backend
-    - value: rabbit
+    - parameter: notify_nova_on_port_status_changes
+    - value: 'True'
 
-neutron_controller_conf_rabbit_host:
+neutron_controller_conf_notify_nova_on_port_data_changes:
   openstack_config.present:
     - filename: /etc/neutron/neutron.conf
     - section: DEFAULT
-    - parameter: rabbit_host
-    - value: {{ controller }}
-
-neutron_controller_conf_rabbit_password:
-  openstack_config.present:
-    - filename: /etc/neutron/neutron.conf
-    - section: DEFAULT
-    - parameter: rabbit_password
-    - value: {{ rabbit_pass }}
-
-neutron_controller_conf_DEFAULT_auth_strategy:
-  openstack_config.present:
-    - filename: /etc/neutron/neutron.conf
-    - section: DEFAULT
-    - parameter: auth_strategy
-    - value: keystone
-
-neutron_controller_conf_auth_uri:
-  openstack_config.present:
-    - filename: /etc/neutron/neutron.conf
-    - section: keystone_authtoken
-    - parameter: auth_uri
-    - value: http://{{ controller }}:5000/v2.0
-
-neutron_controller_conf_identity_uri:
-  openstack_config.present:
-    - filename: /etc/neutron/neutron.conf
-    - section: keystone_authtoken
-    - parameter: identity_uri
-    - value: http://{{ controller }}:35357
-
-neutron_controller_conf_admin_tenant_name:
-  openstack_config.present:
-    - filename: /etc/neutron/neutron.conf
-    - section: keystone_authtoken
-    - parameter: admin_tenant_name
-    - value: service
-
-neutron_controller_conf_admin_user:
-  openstack_config.present:
-    - filename: /etc/neutron/neutron.conf
-    - section: keystone_authtoken
-    - parameter: admin_user
-    - value: neutron
-
-neutron_controller_conf_admin_password:
-  openstack_config.present:
-    - filename: /etc/neutron/neutron.conf
-    - section: keystone_authtoken
-    - parameter: admin_password
-    - value: {{ neutron_pass }}
-
-neutron_controller_conf_core_plugin:
-  openstack_config.present:
-    - filename: /etc/neutron/neutron.conf
-    - section: DEFAULT
-    - parameter: core_plugin
-    - value: ml2
-
-neutron_controller_conf_service_plugins:
-  openstack_config.present:
-    - filename: /etc/neutron/neutron.conf
-    - section: DEFAULT
-    - parameter: service_plugins
-    - value: router
-
-neutron_controller_conf_allow_overlapping_ips:
-  openstack_config.present:
-    - filename: /etc/neutron/neutron.conf
-    - section: DEFAULT
-    - parameter: allow_overlapping_ips
+    - parameter: notify_nova_on_port_data_changes
     - value: 'True'
 
 neutron_controller_conf_nova_admin_auth_url:
@@ -230,139 +170,26 @@ neutron_controller_conf_nova_admin_password:
     - value: {{ nova_pass }}
 
 
+## To configure Compute to use Networking
+##
+## By default, distribution packages configure Compute to use legacy networking. You must reconfigure Compute to manage networks through Networking.
+##
+##  Edit the /etc/nova/nova.conf file and complete the following actions:
+#
+## a. In the [DEFAULT] section, configure the APIs and drivers:
+##
 
-neutron_controller_conf_type_drivers:
-  openstack_config.present:
-    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
-    - section: ml2
-    - parameter: type_drivers
-    - value: 'flat, gre'
-
-neutron_controller_conf_tenant_network_types:
-  openstack_config.present:
-    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
-    - section: ml2
-    - parameter: tenant_network_types 
-    - value: gre
-
-neutron_controller_conf_mechanism_drivers:
-  openstack_config.present:
-    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
-    - section: ml2
-    - parameter: mechanism_drivers 
-    - value: openvswitch
+##############################################
+{{ configure_compute_common( 'controller' ) }}
+##############################################
 
 
-neutron_controller_conf_tunnel_id_ranges:
-  openstack_config.present:
-    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
-    - section: ml2_type_gre
-    - parameter: tunnel_id_ranges
-    - value: 1:1000
-
-neutron_controller_conf_enable_security_group:
-  openstack_config.present:
-    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
-    - section: securitygroup
-    - parameter: enable_security_group
-    - value: 'True'
-
-neutron_controller_conf_enable_ipset:
-  openstack_config.present:
-    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
-    - section: securitygroup
-    - parameter: enable_ipset
-    - value: 'True'
-
-neutron_controller_conf_firewall_driver:
-  openstack_config.present:
-    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
-    - section: securitygroup
-    - parameter: firewall_driver
-    - value: neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
-
-
-
-
-nova_controller_conf_network_api_class:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: DEFAULT
-    - parameter: network_api_class 
-    - value: nova.network.neutronv2.api.API
-
-nova_controller_conf_security_group_api:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: DEFAULT
-    - parameter: security_group_api  
-    - value: neutron
-
-nova_controller_conf_linuxnet_interface_driver:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: DEFAULT
-    - parameter: linuxnet_interface_driver
-    - value: nova.network.linux_net.LinuxOVSInterfaceDriver
-
-nova_controller_conf_DEFAULT_firewall_driver:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: DEFAULT
-    - parameter: firewall_driver
-    - value: nova.virt.firewall.NoopFirewallDriver
-
-nova_controller_conf_url:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: neutron
-    - parameter: url
-    - value: http://{{ controller }}:9696
-
-neutron_controller_conf_auth_strategy:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: neutron
-    - parameter: auth_strategy
-    - value: keystone
-
-nova_controller_conf_admin_auth_url:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: neutron
-    - parameter: admin_auth_url
-    - value: http://{{ controller }}:35357/v2.0
-
-nova_controller_conf_admin_tenant_name:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: neutron
-    - parameter: admin_tenant_name
-    - value: service
-
-nova_controller_conf_admin_username:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: neutron
-    - parameter: admin_username
-    - value: neutron
-
-nova_controller_conf_admin_password:
-  openstack_config.present:
-    - filename: /etc/nova/nova.conf
-    - section: neutron
-    - parameter: admin_password
-    - value: {{ neutron_pass }}
-
-/etc/neutron/plugin.ini:
-  file.symlink:
-    - name: /etc/neutron/plugin.ini
-    - target: /etc/neutron/plugins/ml2/ml2_conf.ini
-
+##  2. Populate the database:
 
 #### TODO: su -s /bin/sh -c "neutron-db-manage --config-file /etc/neutron/neutron.conf \
 ####  --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade juno" neutron
 
+## 3. Restart the Compute services:
 
 openstack_nova_api_service:
   service.running:
@@ -375,11 +202,14 @@ openstack_nova_scheduler_service:
     - name: openstack-nova-scheduler
     - enable: True
     - reload: True
+
 openstack_nova_conductor_service:
   service.running:
     - name: openstack-nova-conductor
     - enable: True
     - reload: True
+
+## 4. Start the Networking service and configure it to start when the system boots:
 
 openstack_neutron_server_running:
   service.running:
@@ -389,4 +219,23 @@ openstack_neutron_server_running:
 openstack_neutron_server_enabled_on_boot:
   service.enabled:
     - name: neutron-server
+
+
+
+# On the controller node, edit the /etc/nova/nova.conf file and complete the following action:
+
+neutron_controller_conf_1:
+  openstack_config.present:
+    - filename: /etc/nova/nova.conf
+    - section: neutron
+    - parameter: service_metadata_proxy
+    - value: 'True'
+
+neutron_controller_conf_2:
+  openstack_config.present:
+    - filename: /etc/nova/nova.conf
+    - section: neutron
+    - parameter: metadata_proxy_shared_secret
+    - value: {{ metadata_secret }}
+
 

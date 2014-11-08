@@ -1,0 +1,126 @@
+
+##
+## The Networking common component configuration includes the authentication mechanism, message broker, and plug-in.
+##
+
+{% macro configure_networking_common( component )  %}
+
+{% set controller = salt['pillar.get']('openstack:controller') %}
+{% set neutron_pass = salt['pillar.get']('openstack:NEUTRON_PASS') %}
+{% set rabbit_pass = salt['pillar.get']('openstack:RABBIT_PASS') %}
+
+### controller: openstack-neutron openstack-neutron-ml2 python-neutronclient which
+### network:    openstack-neutron openstack-neutron-ml2 openstack-neutron-openvswitch
+### compute:                      openstack-neutron-ml2 openstack-neutron-openvswitch
+
+## controller: a. In the [database] section, configure database access:
+## network: a. In the [database] section, comment out any connection options because compute nodes do not directly access the database.
+## compute: a. In the [database] section, comment out any connection options because compute nodes do not directly access the database.
+## b. In the [DEFAULT] section, configure RabbitMQ message broker access:
+## c. In the [DEFAULT] and [keystone_authtoken] sections, configure Identity service access:
+
+## d. In the [DEFAULT] section, enable the Modular Layer 2 (ML2) plug-in, router service, and overlapping IP addresses:
+
+neutron_{{ component }}_conf_core_plugin:
+  openstack_config.present:
+    - filename: /etc/neutron/neutron.conf
+    - section: DEFAULT
+    - parameter: core_plugin
+    - value: ml2
+
+neutron_{{ component }}_conf_service_plugins:
+  openstack_config.present:
+    - filename: /etc/neutron/neutron.conf
+    - section: DEFAULT
+    - parameter: service_plugins
+    - value: router
+
+neutron_{{ component }}_conf_allow_overlapping_ips:
+  openstack_config.present:
+    - filename: /etc/neutron/neutron.conf
+    - section: DEFAULT
+    - parameter: allow_overlapping_ips
+    - value: 'True'
+
+##
+
+
+##  (Optional) To assist with troubleshooting, enable verbose logging in the [DEFAULT] section:
+
+neutron_{{ component }}_conf_verbose:
+  openstack_config.present:
+    - filename: /etc/neutron/neutron.conf
+    - section: DEFAULT
+    - parameter: verbose
+    - value: 'True'
+
+## To configure the Modular Layer 2 (ML2) plug-in
+## The ML2 plug-in uses the Open vSwitch (OVS) mechanism (agent) to build the virtual networking framework for instances.
+##    Edit the /etc/neutron/plugins/ml2/ml2_conf.ini file and complete the following actions:
+
+## a. In the [ml2] section, enable the flat and generic routing encapsulation (GRE) network type drivers, GRE tenant networks, and the OVS mechanism driver:
+
+neutron_{{ component }}_conf_type_drivers:
+  openstack_config.present:
+    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
+    - section: ml2
+    - parameter: type_drivers
+    - value: 'flat, gre'
+
+neutron_{{ component }}_conf_tenant_network_types:
+  openstack_config.present:
+    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
+    - section: ml2
+    - parameter: tenant_network_types
+    - value: gre
+
+neutron_{{ component }}_conf_mechanism_drivers:
+  openstack_config.present:
+    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
+    - section: ml2
+    - parameter: mechanism_drivers
+    - value: openvswitch
+
+## b. in the [ml2_type_gre] section, configure the tunnel identifier (id) range:
+
+neutron_{{ component }}_conf_tunnel_id_ranges:
+  openstack_config.present:
+    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
+    - section: ml2_type_gre
+    - parameter: tunnel_id_ranges
+    - value: 1:1000
+
+## c. In the [securitygroup] section, enable security groups, enable ipset, and configure the OVS iptables firewall driver:
+
+neutron_{{ component }}_conf_enable_security_group:
+  openstack_config.present:
+    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
+    - section: securitygroup
+    - parameter: enable_security_group
+    - value: 'True'
+
+neutron_{{ component }}_conf_enable_ipset:
+  openstack_config.present:
+    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
+    - section: securitygroup
+    - parameter: enable_ipset
+    - value: 'True'
+
+neutron_{{ component }}_conf_firewall_driver:
+  openstack_config.present:
+    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
+    - section: securitygroup
+    - parameter: firewall_driver
+    - value: neutron.agent.linux.iptables_firewall.OVSHybridIptablesFirewallDriver
+
+
+## To finalize installation
+#   1. The Networking service initialization scripts expect a symbolic link /etc/neutron/plugin.ini pointing to the ML2 plug-in configuration file, /etc/neutron/plugins/ml2/ml2_conf.ini. If this symbolic link does not exist, create it using the following command:
+
+/etc/neutron/plugin.ini:
+  file.symlink:
+    - name: /etc/neutron/plugin.ini
+    - target: /etc/neutron/plugins/ml2/ml2_conf.ini
+
+{% endmacro %}
+

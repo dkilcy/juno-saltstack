@@ -1,5 +1,7 @@
 # openssl rand -hex 10
 
+mariadb:
+  root_password: mariadb
 
 openstack:
   METADATA_SECRET: 0cb2bb516881d71eff88

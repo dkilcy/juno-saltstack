@@ -6,16 +6,18 @@
 
 {% set ipaddr = salt['grains.get']('openstack.mgmt_ip') %}
 
-enp0s20f0:
+/etc/sysconfig/network-scripts/ifcfg-enp0s20f0:
   network.managed:
+    - name: /etc/sysconfig/network-scripts/ifcfg-enp0s20f0
     - enabled: True
     - type: eth
     - proto: none
     - ipaddr: {{ ipaddr }}
     - netmask: 255.255.255.0
 
-enp0s20f1:
+/etc/sysconfig/network-scripts/ifcfg-enp0s20f1:
   network.managed:
+    - name: /etc/sysconfig/network-scripts/ifcfg-enp0s20f1
     - enabled: True
     - type: eth
     - proto: none

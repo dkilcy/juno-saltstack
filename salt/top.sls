@@ -2,16 +2,15 @@
 base:
   '*':
     - vim
-
-#  'workstation*':
-#    - openstack.auth
+    - users
 
   'controller*':
-    - users
-    - openstack.ipv4.controller
+    - openstack.ipv4
+#    - openstack.ipv4.controller
     - ntp
     - openstack.utils
     - openstack.auth
+    - mariadb
 #    - rabbitmq
 #    - openstack.keystone
 #    - openstack.glance
@@ -22,16 +21,16 @@ base:
 #    - openstack.ceilometer_glance
 
   'network*':
-    - users
-    - openstack.ipv4.network
+    - openstack.ipv4
+#    - openstack.ipv4.network
     - ntp
     - openstack.utils
     - openstack.auth
 #    - openstack.neutron_network
     
   'compute*':
-    - users
-    - openstack.ipv4.compute
+    - openstack.ipv4
+#    - openstack.ipv4.compute
     - ntp
     - openstack.utils
     - openstack.auth
@@ -39,13 +38,13 @@ base:
 #    - openstack.neutron_compute
 #    - openstack.ceilometer_compute
 
-#  'block*':
-#    - users
+  'block*':
+    - openstack.ipv4
 #    - openstack.ipv4.block
-#    - ntp
+    - ntp
 
-#  'object*':
-#    - users
+  'object*':
+    - openstack.ipv4
 #    - openstack.ipv4.object
-#    - ntp
+    - ntp
 

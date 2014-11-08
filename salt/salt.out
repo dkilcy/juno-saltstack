@@ -1,0 +1,789 @@
+block1:
+----------
+          ID: vim
+    Function: pkg.installed
+        Name: vim-enhanced
+      Result: True
+     Comment: Package vim-enhanced is already installed
+     Changes:   
+----------
+          ID: /home/devops/.vimrc
+    Function: file.managed
+      Result: True
+     Comment: File /home/devops/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: /root/.bashrc
+    Function: file.append
+      Result: True
+     Comment: Appended 0 lines
+     Changes:   
+----------
+          ID: /root/.vimrc
+    Function: file.managed
+      Result: True
+     Comment: File /root/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: devops
+    Function: user.present
+      Result: True
+     Comment: User devops is present and up to date
+     Changes:   
+----------
+          ID: devops
+    Function: file.managed
+        Name: /etc/sudoers.d/devops
+      Result: True
+     Comment: File /etc/sudoers.d/devops is in the correct state
+     Changes:   
+----------
+          ID: devops_authorized_keys
+    Function: file.managed
+        Name: /home/devops/.ssh/authorized_keys
+      Result: True
+     Comment: File /home/devops/.ssh/authorized_keys is in the correct state
+     Changes:   
+----------
+          ID: devops_vimrc
+    Function: file.managed
+        Name: /home/devops/.vimrc
+      Result: True
+     Comment: File /home/devops/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: /home/devops/.bashrc
+    Function: file.append
+      Result: True
+     Comment: Appended 0 lines
+     Changes:   
+----------
+          ID: teaming
+    Function: pkg.installed
+        Name: teamd
+      Result: True
+     Comment: Package teamd is already installed
+     Changes:   
+----------
+          ID: ntp
+    Function: pkg.installed
+      Result: True
+     Comment: Package ntp is already installed
+     Changes:   
+----------
+          ID: /etc/ntp.conf
+    Function: file.managed
+      Result: True
+     Comment: File /etc/ntp.conf is in the correct state
+     Changes:   
+----------
+          ID: ntpd
+    Function: service.running
+      Result: True
+     Comment: Service ntpd is already enabled, and is in the desired state
+     Changes:   
+
+Summary
+-------------
+Succeeded: 13
+Failed:     0
+-------------
+Total:     13
+compute1:
+----------
+          ID: vim
+    Function: pkg.installed
+        Name: vim-enhanced
+      Result: True
+     Comment: Package vim-enhanced is already installed
+     Changes:   
+----------
+          ID: /home/devops/.vimrc
+    Function: file.managed
+      Result: True
+     Comment: File /home/devops/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: /root/.bashrc
+    Function: file.append
+      Result: True
+     Comment: Appended 0 lines
+     Changes:   
+----------
+          ID: /root/.vimrc
+    Function: file.managed
+      Result: True
+     Comment: File /root/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: devops
+    Function: user.present
+      Result: True
+     Comment: User devops is present and up to date
+     Changes:   
+----------
+          ID: devops
+    Function: file.managed
+        Name: /etc/sudoers.d/devops
+      Result: True
+     Comment: File /etc/sudoers.d/devops is in the correct state
+     Changes:   
+----------
+          ID: devops_authorized_keys
+    Function: file.managed
+        Name: /home/devops/.ssh/authorized_keys
+      Result: True
+     Comment: File /home/devops/.ssh/authorized_keys is in the correct state
+     Changes:   
+----------
+          ID: devops_vimrc
+    Function: file.managed
+        Name: /home/devops/.vimrc
+      Result: True
+     Comment: File /home/devops/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: /home/devops/.bashrc
+    Function: file.append
+      Result: True
+     Comment: Appended 0 lines
+     Changes:   
+----------
+          ID: teaming
+    Function: pkg.installed
+        Name: teamd
+      Result: True
+     Comment: Package teamd is already installed
+     Changes:   
+----------
+          ID: ntp
+    Function: pkg.installed
+      Result: True
+     Comment: Package ntp is already installed
+     Changes:   
+----------
+          ID: /etc/ntp.conf
+    Function: file.managed
+      Result: True
+     Comment: File /etc/ntp.conf is in the correct state
+     Changes:   
+----------
+          ID: ntpd
+    Function: service.running
+      Result: True
+     Comment: Service ntpd is already enabled, and is in the desired state
+     Changes:   
+----------
+          ID: openstack_utils
+    Function: pkg.installed
+        Name: openstack-utils
+      Result: True
+     Comment: Package openstack-utils is already installed
+     Changes:   
+----------
+          ID: openstack-selinux
+    Function: pkg.installed
+      Result: True
+     Comment: Package openstack-selinux is already installed
+     Changes:   
+----------
+          ID: dir_setup
+    Function: file.directory
+        Name: /home/devops/openstack
+      Result: True
+     Comment: Directory /home/devops/openstack is in the correct state
+     Changes:   
+----------
+          ID: auth_setup
+    Function: file.managed
+        Name: /home/devops/openstack/auth-openrc.sh
+      Result: True
+     Comment: File /home/devops/openstack/auth-openrc.sh is in the correct state
+     Changes:   
+----------
+          ID: admin_setup
+    Function: file.managed
+        Name: /home/devops/openstack/admin-openrc.sh
+      Result: True
+     Comment: File /home/devops/openstack/admin-openrc.sh is in the correct state
+     Changes:   
+----------
+          ID: demo_setup
+    Function: file.managed
+        Name: /home/devops/openstack/demo-openrc.sh
+      Result: True
+     Comment: File /home/devops/openstack/demo-openrc.sh is in the correct state
+     Changes:   
+
+Summary
+-------------
+Succeeded: 19
+Failed:     0
+-------------
+Total:     19
+object1:
+----------
+          ID: vim
+    Function: pkg.installed
+        Name: vim-enhanced
+      Result: True
+     Comment: Package vim-enhanced is already installed
+     Changes:   
+----------
+          ID: /home/devops/.vimrc
+    Function: file.managed
+      Result: True
+     Comment: File /home/devops/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: /root/.bashrc
+    Function: file.append
+      Result: True
+     Comment: Appended 0 lines
+     Changes:   
+----------
+          ID: /root/.vimrc
+    Function: file.managed
+      Result: True
+     Comment: File /root/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: devops
+    Function: user.present
+      Result: True
+     Comment: User devops is present and up to date
+     Changes:   
+----------
+          ID: devops
+    Function: file.managed
+        Name: /etc/sudoers.d/devops
+      Result: True
+     Comment: File /etc/sudoers.d/devops is in the correct state
+     Changes:   
+----------
+          ID: devops_authorized_keys
+    Function: file.managed
+        Name: /home/devops/.ssh/authorized_keys
+      Result: True
+     Comment: File /home/devops/.ssh/authorized_keys is in the correct state
+     Changes:   
+----------
+          ID: devops_vimrc
+    Function: file.managed
+        Name: /home/devops/.vimrc
+      Result: True
+     Comment: File /home/devops/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: /home/devops/.bashrc
+    Function: file.append
+      Result: True
+     Comment: Appended 0 lines
+     Changes:   
+----------
+          ID: teaming
+    Function: pkg.installed
+        Name: teamd
+      Result: True
+     Comment: Package teamd is already installed
+     Changes:   
+----------
+          ID: ntp
+    Function: pkg.installed
+      Result: True
+     Comment: Package ntp is already installed
+     Changes:   
+----------
+          ID: /etc/ntp.conf
+    Function: file.managed
+      Result: True
+     Comment: File /etc/ntp.conf is in the correct state
+     Changes:   
+----------
+          ID: ntpd
+    Function: service.running
+      Result: True
+     Comment: Service ntpd is already enabled, and is in the desired state
+     Changes:   
+
+Summary
+-------------
+Succeeded: 13
+Failed:     0
+-------------
+Total:     13
+controller1:
+----------
+          ID: vim
+    Function: pkg.installed
+        Name: vim-enhanced
+      Result: True
+     Comment: Package vim-enhanced is already installed
+     Changes:   
+----------
+          ID: /home/devops/.vimrc
+    Function: file.managed
+      Result: True
+     Comment: File /home/devops/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: /root/.bashrc
+    Function: file.append
+      Result: True
+     Comment: Appended 0 lines
+     Changes:   
+----------
+          ID: /root/.vimrc
+    Function: file.managed
+      Result: True
+     Comment: File /root/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: devops
+    Function: user.present
+      Result: True
+     Comment: User devops is present and up to date
+     Changes:   
+----------
+          ID: devops
+    Function: file.managed
+        Name: /etc/sudoers.d/devops
+      Result: True
+     Comment: File /etc/sudoers.d/devops is in the correct state
+     Changes:   
+----------
+          ID: devops_authorized_keys
+    Function: file.managed
+        Name: /home/devops/.ssh/authorized_keys
+      Result: True
+     Comment: File /home/devops/.ssh/authorized_keys is in the correct state
+     Changes:   
+----------
+          ID: devops_vimrc
+    Function: file.managed
+        Name: /home/devops/.vimrc
+      Result: True
+     Comment: File /home/devops/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: /home/devops/.bashrc
+    Function: file.append
+      Result: True
+     Comment: Appended 0 lines
+     Changes:   
+----------
+          ID: teaming
+    Function: pkg.installed
+        Name: teamd
+      Result: True
+     Comment: Package teamd is already installed
+     Changes:   
+----------
+          ID: ntp
+    Function: pkg.installed
+      Result: True
+     Comment: Package ntp is already installed
+     Changes:   
+----------
+          ID: /etc/ntp.conf
+    Function: file.managed
+      Result: True
+     Comment: File /etc/ntp.conf is in the correct state
+     Changes:   
+----------
+          ID: ntpd
+    Function: service.running
+      Result: True
+     Comment: Service ntpd is already enabled, and is in the desired state
+     Changes:   
+----------
+          ID: openstack_utils
+    Function: pkg.installed
+        Name: openstack-utils
+      Result: True
+     Comment: Package openstack-utils is already installed
+     Changes:   
+----------
+          ID: openstack-selinux
+    Function: pkg.installed
+      Result: True
+     Comment: Package openstack-selinux is already installed
+     Changes:   
+----------
+          ID: dir_setup
+    Function: file.directory
+        Name: /home/devops/openstack
+      Result: True
+     Comment: Directory /home/devops/openstack is in the correct state
+     Changes:   
+----------
+          ID: auth_setup
+    Function: file.managed
+        Name: /home/devops/openstack/auth-openrc.sh
+      Result: True
+     Comment: File /home/devops/openstack/auth-openrc.sh is in the correct state
+     Changes:   
+----------
+          ID: admin_setup
+    Function: file.managed
+        Name: /home/devops/openstack/admin-openrc.sh
+      Result: True
+     Comment: File /home/devops/openstack/admin-openrc.sh is in the correct state
+     Changes:   
+----------
+          ID: demo_setup
+    Function: file.managed
+        Name: /home/devops/openstack/demo-openrc.sh
+      Result: True
+     Comment: File /home/devops/openstack/demo-openrc.sh is in the correct state
+     Changes:   
+----------
+          ID: mariadb
+    Function: pkg.installed
+      Result: True
+     Comment: Package mariadb is already installed
+     Changes:   
+----------
+          ID: mariadb-server
+    Function: pkg.installed
+      Result: True
+     Comment: Package mariadb-server is already installed
+     Changes:   
+----------
+          ID: MySQL-python
+    Function: pkg.installed
+      Result: True
+     Comment: Package MySQL-python is already installed
+     Changes:   
+----------
+          ID: mariadb_service
+    Function: service.enabled
+        Name: mariadb
+      Result: True
+     Comment: Service mariadb is already enabled, and is in the desired state
+     Changes:   
+----------
+          ID: mariadb_service_running
+    Function: service.running
+        Name: mariadb
+      Result: True
+     Comment: Service mariadb is already enabled, and is in the desired state
+     Changes:   
+----------
+          ID: /etc/my.cnf.d/juno-saltstack.cnf
+    Function: file.managed
+      Result: True
+     Comment: File /etc/my.cnf.d/juno-saltstack.cnf is in the correct state
+     Changes:   
+----------
+          ID: mysql_root_password
+    Function: cmd.run
+        Name: mysqladmin --user root password 'mariadb'
+      Result: True
+     Comment: unless execution succeeded
+     Changes:   
+----------
+          ID: rabbitmq-server
+    Function: pkg.installed
+      Result: True
+     Comment: Package rabbitmq-server is already installed
+     Changes:   
+----------
+          ID: rabbitmq-server-enabled
+    Function: service.enabled
+        Name: rabbitmq-server
+      Result: True
+     Comment: Service rabbitmq-server is already enabled, and is in the desired state
+     Changes:   
+----------
+          ID: rabbitmq-server-running
+    Function: service.running
+        Name: rabbitmq-server
+      Result: True
+     Comment: Service rabbitmq-server is already enabled, and is running
+     Changes:   
+              ----------
+              rabbitmq-server:
+                  True
+----------
+          ID: rabbit_user
+    Function: rabbitmq_user.present
+      Result: True
+     Comment: Creating user "rabbit_user" ...
+              ...done.
+     Changes:   
+              ----------
+              new:
+                  
+              old:
+
+Summary
+-------------
+Succeeded: 30
+Failed:     0
+-------------
+Total:     30
+compute2:
+----------
+          ID: vim
+    Function: pkg.installed
+        Name: vim-enhanced
+      Result: True
+     Comment: Package vim-enhanced is already installed
+     Changes:   
+----------
+          ID: /home/devops/.vimrc
+    Function: file.managed
+      Result: True
+     Comment: File /home/devops/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: /root/.bashrc
+    Function: file.append
+      Result: True
+     Comment: Appended 0 lines
+     Changes:   
+----------
+          ID: /root/.vimrc
+    Function: file.managed
+      Result: True
+     Comment: File /root/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: devops
+    Function: user.present
+      Result: True
+     Comment: User devops is present and up to date
+     Changes:   
+----------
+          ID: devops
+    Function: file.managed
+        Name: /etc/sudoers.d/devops
+      Result: True
+     Comment: File /etc/sudoers.d/devops is in the correct state
+     Changes:   
+----------
+          ID: devops_authorized_keys
+    Function: file.managed
+        Name: /home/devops/.ssh/authorized_keys
+      Result: True
+     Comment: File /home/devops/.ssh/authorized_keys is in the correct state
+     Changes:   
+----------
+          ID: devops_vimrc
+    Function: file.managed
+        Name: /home/devops/.vimrc
+      Result: True
+     Comment: File /home/devops/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: /home/devops/.bashrc
+    Function: file.append
+      Result: True
+     Comment: Appended 0 lines
+     Changes:   
+----------
+          ID: teaming
+    Function: pkg.installed
+        Name: teamd
+      Result: True
+     Comment: Package teamd is already installed
+     Changes:   
+----------
+          ID: ntp
+    Function: pkg.installed
+      Result: True
+     Comment: Package ntp is already installed
+     Changes:   
+----------
+          ID: /etc/ntp.conf
+    Function: file.managed
+      Result: True
+     Comment: File /etc/ntp.conf is in the correct state
+     Changes:   
+----------
+          ID: ntpd
+    Function: service.running
+      Result: True
+     Comment: Service ntpd is already enabled, and is in the desired state
+     Changes:   
+----------
+          ID: openstack_utils
+    Function: pkg.installed
+        Name: openstack-utils
+      Result: True
+     Comment: Package openstack-utils is already installed
+     Changes:   
+----------
+          ID: openstack-selinux
+    Function: pkg.installed
+      Result: True
+     Comment: Package openstack-selinux is already installed
+     Changes:   
+----------
+          ID: dir_setup
+    Function: file.directory
+        Name: /home/devops/openstack
+      Result: True
+     Comment: Directory /home/devops/openstack is in the correct state
+     Changes:   
+----------
+          ID: auth_setup
+    Function: file.managed
+        Name: /home/devops/openstack/auth-openrc.sh
+      Result: True
+     Comment: File /home/devops/openstack/auth-openrc.sh is in the correct state
+     Changes:   
+----------
+          ID: admin_setup
+    Function: file.managed
+        Name: /home/devops/openstack/admin-openrc.sh
+      Result: True
+     Comment: File /home/devops/openstack/admin-openrc.sh is in the correct state
+     Changes:   
+----------
+          ID: demo_setup
+    Function: file.managed
+        Name: /home/devops/openstack/demo-openrc.sh
+      Result: True
+     Comment: File /home/devops/openstack/demo-openrc.sh is in the correct state
+     Changes:   
+
+Summary
+-------------
+Succeeded: 19
+Failed:     0
+-------------
+Total:     19
+network1:
+----------
+          ID: vim
+    Function: pkg.installed
+        Name: vim-enhanced
+      Result: True
+     Comment: Package vim-enhanced is already installed
+     Changes:   
+----------
+          ID: /home/devops/.vimrc
+    Function: file.managed
+      Result: True
+     Comment: File /home/devops/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: /root/.bashrc
+    Function: file.append
+      Result: True
+     Comment: Appended 0 lines
+     Changes:   
+----------
+          ID: /root/.vimrc
+    Function: file.managed
+      Result: True
+     Comment: File /root/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: devops
+    Function: user.present
+      Result: True
+     Comment: User devops is present and up to date
+     Changes:   
+----------
+          ID: devops
+    Function: file.managed
+        Name: /etc/sudoers.d/devops
+      Result: True
+     Comment: File /etc/sudoers.d/devops is in the correct state
+     Changes:   
+----------
+          ID: devops_authorized_keys
+    Function: file.managed
+        Name: /home/devops/.ssh/authorized_keys
+      Result: True
+     Comment: File /home/devops/.ssh/authorized_keys is in the correct state
+     Changes:   
+----------
+          ID: devops_vimrc
+    Function: file.managed
+        Name: /home/devops/.vimrc
+      Result: True
+     Comment: File /home/devops/.vimrc is in the correct state
+     Changes:   
+----------
+          ID: /home/devops/.bashrc
+    Function: file.append
+      Result: True
+     Comment: Appended 0 lines
+     Changes:   
+----------
+          ID: teaming
+    Function: pkg.installed
+        Name: teamd
+      Result: True
+     Comment: Package teamd is already installed
+     Changes:   
+----------
+          ID: ntp
+    Function: pkg.installed
+      Result: True
+     Comment: Package ntp is already installed
+     Changes:   
+----------
+          ID: /etc/ntp.conf
+    Function: file.managed
+      Result: True
+     Comment: File /etc/ntp.conf is in the correct state
+     Changes:   
+----------
+          ID: ntpd
+    Function: service.running
+      Result: True
+     Comment: Service ntpd is already enabled, and is in the desired state
+     Changes:   
+----------
+          ID: openstack_utils
+    Function: pkg.installed
+        Name: openstack-utils
+      Result: True
+     Comment: Package openstack-utils is already installed
+     Changes:   
+----------
+          ID: openstack-selinux
+    Function: pkg.installed
+      Result: True
+     Comment: Package openstack-selinux is already installed
+     Changes:   
+----------
+          ID: dir_setup
+    Function: file.directory
+        Name: /home/devops/openstack
+      Result: True
+     Comment: Directory /home/devops/openstack is in the correct state
+     Changes:   
+----------
+          ID: auth_setup
+    Function: file.managed
+        Name: /home/devops/openstack/auth-openrc.sh
+      Result: True
+     Comment: File /home/devops/openstack/auth-openrc.sh is in the correct state
+     Changes:   
+----------
+          ID: admin_setup
+    Function: file.managed
+        Name: /home/devops/openstack/admin-openrc.sh
+      Result: True
+     Comment: File /home/devops/openstack/admin-openrc.sh is in the correct state
+     Changes:   
+----------
+          ID: demo_setup
+    Function: file.managed
+        Name: /home/devops/openstack/demo-openrc.sh
+      Result: True
+     Comment: File /home/devops/openstack/demo-openrc.sh is in the correct state
+     Changes:   
+
+Summary
+-------------
+Succeeded: 19
+Failed:     0
+-------------
+Total:     19

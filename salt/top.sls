@@ -11,14 +11,14 @@ base:
     - openstack.utils
     - openstack.auth
     - mariadb
-#    - rabbitmq
-#    - openstack.keystone
-#    - openstack.glance
-#    - openstack.nova_controller
-#    - openstack.neutron_controller
+    - rabbitmq
+    - openstack.keystone
+    - openstack.glance
+    - openstack.nova.controller
+#    - openstack.neutron.controller
 #    - openstack.horizon
-#    - openstack.ceilometer_controller
-#    - openstack.ceilometer_glance
+#    - openstack.ceilometer.controller
+#    - openstack.ceilometer.glance
 
   'network*':
     - openstack.ipv4
@@ -26,7 +26,7 @@ base:
     - ntp
     - openstack.utils
     - openstack.auth
-#    - openstack.neutron_network
+#    - openstack.neutron.network
     
   'compute*':
     - openstack.ipv4
@@ -34,9 +34,9 @@ base:
     - ntp
     - openstack.utils
     - openstack.auth
-#    - openstack.nova_compute
-#    - openstack.neutron_compute
-#    - openstack.ceilometer_compute
+    - openstack.nova.compute
+#    - openstack.neutron.compute
+#    - openstack.ceilometer.compute
 
   'block*':
     - openstack.ipv4

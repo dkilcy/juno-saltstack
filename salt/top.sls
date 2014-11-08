@@ -15,7 +15,7 @@ base:
     - openstack.keystone
     - openstack.glance
     - openstack.nova.controller
-#    - openstack.neutron.controller
+    - openstack.neutron.controller
 #    - openstack.horizon
 #    - openstack.ceilometer.controller
 #    - openstack.ceilometer.glance

@@ -27,6 +27,13 @@ sysfsutils:
 {{ configure_rabbitmq( 'nova_compute', '/etc/nova/nova.conf' ) }}
 {{ configure_identity( 'nova_compute', '/etc/nova/nova.conf', 'nova', nova_pass ) }}
 
+nova_compute_conf_auth_strategy:
+  openstack_config.present:
+    - filename: /etc/nova/nova.conf
+    - section: DEFAULT
+    - parameter: auth_strategy
+    - value: keystone
+
 nova_conf_my_ip:
   openstack_config.present:
     - filename: /etc/nova/nova.conf
@@ -86,12 +93,4 @@ nova_compute_service:
   service.running:
     - name: openstack-nova-compute
     - enable: True
-
-nova_libvirtd_enabled_on_boot:
-  service.enabled:
-    - name: libvirtd
-
-nova_compute_enabled_on_boot:
-  service.enabled:
-    - name: openstack-nova-compute
 

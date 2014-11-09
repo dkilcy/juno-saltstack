@@ -3,13 +3,6 @@
 
 {% set controller = salt['pillar.get']('openstack:controller') %}
 
-{{ component }}_auth_strategy:
-  openstack_config.present:
-    - filename: {{ filename }}
-    - section: DEFAULT
-    - parameter: auth_strategy
-    - value: keystone
-
 {{ component }}_auth_uri:
   openstack_config.present:
     - filename: {{ filename }}

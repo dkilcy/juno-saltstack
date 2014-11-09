@@ -181,26 +181,14 @@ keystone_db_sync:
   cmd.run:
     - name: keystone-manage db_sync
 
-### To finalize installation
-
-#### 1. Start the Identity service and configure it to start when the system boots:
-
-keystone_enabled_on_boot:
-  service.enabled:
-    - name: openstack-keystone
-    - enabled: True
-
 keystone_service:
   service.running:
     - name: openstack-keystone
     - enable: True
 
-#keystone_conf_:
-#  openstack_config.present:
-#    - filename: /etc/keystone/keystone.conf
-#    - section: 
-#    - parameter: 
-#    - value:
+
+
+### To finalize installation
 
 # http://docs.openstack.org/juno/install-guide/install/yum/content/keystone-users.html
 

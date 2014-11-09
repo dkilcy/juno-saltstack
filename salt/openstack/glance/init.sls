@@ -1,3 +1,4 @@
+{% from "openstack/identity.jinja" import configure_identity with context %}
 
 {% from "mariadb/map.jinja" import mysql with context %}
 
@@ -83,7 +84,32 @@ glance_grant_all:
       - cmd: mysql_root_password
       {%- endif %}
 
-## TODO: put back in keystone states when fix is avail for Centos 7
+
+glance_user:
+  keystone.user_present:
+    - name: glance
+    - password: {{ glance_pass }}
+    - email: devops@workstation-02.mgmt
+    - roles:
+      - service:  # tenant
+        - admin   # role
+    - connection_token: {{ admin_token }}
+
+glance_identity_service:
+  keystone.service_present:
+    - name: glance
+    - service_type: image
+    - description: 'OpenStack Image Service'
+    - connection_token: {{ admin_token }}
+
+glance_api_endpoint:
+  keystone.endpoint_present:
+    - name: glance
+    - publicurl: http://{{ controller }}:9292
+    - internalurl: http://{{ controller }}:9292
+    - adminurl: http://{{ controller }}:9292
+    - region: regionOne
+    - connection_token: {{ admin_token }}
 
 openstack_glance:
   pkg.installed:
@@ -100,47 +126,8 @@ glance_conf_1:
     - parameter: connection
     - value: 'mysql://glance:{{ glance_dbpass }}@{{ mysql_host }}/glance'      
 
-glance_api_conf_auth_uri:
-  openstack_config.present:
-    - filename: /etc/glance/glance-api.conf
-    - section: keystone_authtoken
-    - parameter: auth_uri
-    - value: http://{{ controller }}:5000/v2.0
+{{ configure_identity( 'glance-api_controller', '/etc/glance/glance-api.conf', 'glance', glance_pass ) }}
 
-glance_api_conf_identity_uri:
-  openstack_config.present:
-    - filename: /etc/glance/glance-api.conf
-    - section: keystone_authtoken
-    - parameter: identity_uri
-    - value: http://{{ controller }}:35357
-
-glance_api_conf_admin_tenant_name:
-  openstack_config.present:
-    - filename: /etc/glance/glance-api.conf
-    - section: keystone_authtoken
-    - parameter: admin_tenant_name
-    - value: service
-
-glance_api_conf_admin_user:
-  openstack_config.present:
-    - filename: /etc/glance/glance-api.conf
-    - section: keystone_authtoken
-    - parameter: admin_user
-    - value: glance
-
-glance_api_conf_admin_password:
-  openstack_config.present:
-    - filename: /etc/glance/glance-api.conf
-    - section: keystone_authtoken
-    - parameter: admin_password
-    - value: {{ glance_pass }}
-
-glance_api_conf_flavor:
-  openstack_config.present:
-    - filename: /etc/glance/glance-api.conf
-    - section: paste_deploy
-    - parameter: flavor
-    - value: keystone
 
 glance_api_conf_default_store:
   openstack_config.present:
@@ -172,47 +159,7 @@ glance_registry_connection:
     - parameter: connection
     - value: 'mysql://glance:{{ glance_dbpass }}@{{ mysql_host }}/glance'     
 
-glance_registry_conf_auth_uri:
-  openstack_config.present:
-    - filename: /etc/glance/glance-registry.conf
-    - section: keystone_authtoken
-    - parameter: auth_uri
-    - value: http://{{ controller }}:5000/v2.0
-
-glance_registry_conf_identity_uri:
-  openstack_config.present:
-    - filename: /etc/glance/glance-registry.conf
-    - section: keystone_authtoken
-    - parameter: identity_uri
-    - value: http://{{ controller }}:35357
-
-glance_api_registry_admin_tenant_name:
-  openstack_config.present:
-    - filename: /etc/glance/glance-registry.conf
-    - section: keystone_authtoken
-    - parameter: admin_tenant_name
-    - value: service
-
-glance_api_registry_admin_user:
-  openstack_config.present:
-    - filename: /etc/glance/glance-registry.conf
-    - section: keystone_authtoken
-    - parameter: admin_user
-    - value: glance
-
-glance_api_registry_admin_password:
-  openstack_config.present:
-    - filename: /etc/glance/glance-registry.conf
-    - section: keystone_authtoken
-    - parameter: admin_password
-    - value: {{ glance_pass }}
-
-glance_api_registry_flavor:
-  openstack_config.present:
-    - filename: /etc/glance/glance-registry.conf
-    - section: paste_deploy
-    - parameter: flavor
-    - value: keystone
+{{ configure_identity( 'glance-registry_controller', '/etc/glance/glance-registry.conf', 'glance', glance_pass ) }}
 
 glance_api_registry_verbose:
   openstack_config.present:
@@ -224,6 +171,8 @@ glance_api_registry_verbose:
 glance_db_sync:
   cmd.run:
     - name: glance-manage db_sync
+    - user: glance
+    - group: glance
 
 ## need below since cmd.run as root and clobbers the api log file permission
 
@@ -247,14 +196,6 @@ glance_db_sync:
     - group: glance
     - mode: '644'
     - create: True
-
-glance_api_enabled_on_boot:
-  service.enabled:
-    - name: openstack-glance-api
-
-glance_registry_enabled_on_boot:
-  service.enabled:
-    - name: openstack-glance-registry
 
 glance_api_service:
   service.running:

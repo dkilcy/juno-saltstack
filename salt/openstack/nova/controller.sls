@@ -88,7 +88,32 @@ nova_grant_all:
       - cmd: mysql_root_password
       {%- endif %}
 
-### TODO: put back in service credentials
+
+nova_user:
+  keystone.user_present:
+    - name: nova
+    - password: {{ nova_pass }}
+    - email: devops@workstation-02.mgmt
+    - roles:
+      - service:  # tenant
+        - admin   # role
+    - connection_token: {{ admin_token }}
+
+nova_identity_service:
+  keystone.service_present:
+    - name: nova
+    - service_type: compute
+    - description: 'OpenStack Compute'
+    - connection_token: {{ admin_token }}
+
+nova_api_endpoint:
+  keystone.endpoint_present:
+    - name: nova
+    - publicurl: 'http://{{ controller }}:8774/v2/%(tenant_id)s'
+    - internalurl: 'http://{{ controller }}:8774/v2/%(tenant_id)s'
+    - adminurl: 'http://{{ controller }}:8774/v2/%(tenant_id)s'
+    - region: regionOne
+    - connection_token: {{ admin_token }}
 
 
 openstack_nova_api:
@@ -137,6 +162,13 @@ nova_conf_connection:
 {{ configure_identity( 'nova_controller', '/etc/nova/nova.conf', 'nova', nova_pass ) }}
 #################################################################
 
+nova_controller_auth_strategy:
+  openstack_config.present:
+    - filename: /etc/nova/nova.conf
+    - section: DEFAULT
+    - parameter: auth_strategy
+    - value: keystone
+
 nova_conf_my_ip:
   openstack_config.present:
     - filename: /etc/nova/nova.conf
@@ -175,6 +207,8 @@ nova_conf_verbose:
 nova_db_sync:
   cmd.run:
     - name: nova-manage db sync
+    - user: nova
+    - group: nova
 
 nova_api_service:
   service.running:
@@ -205,30 +239,5 @@ nova_novncproxy_service:
   service.running:
     - name: openstack-nova-novncproxy
     - enable: True
-
-nova_api_enabled_on_boot:
-  service.enabled:
-    - name: openstack-nova-api
-
-nova_cert_enabled_on_boot:
-  service.enabled:
-    - name: openstack-nova-cert
-
-nova_consoleauth_enabled_on_boot:
-  service.enabled:
-    - name: openstack-nova-consoleauth
-
-nova_scheduler_on_boot:
-  service.enabled:
-    - name: openstack-nova-scheduler
-
-nova_conductor_enabled_on_boot:
-  service.enabled:
-    - name: openstack-nova-conductor
-
-nova_novncproxy_enabled_on_boot:
-  service.enabled:
-    - name: openstack-nova-novncproxy
-
 
 

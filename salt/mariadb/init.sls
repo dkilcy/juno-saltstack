@@ -11,11 +11,6 @@ MySQL-python:
   pkg.installed:
     - name: MySQL-python
 
-mariadb_service:
-  service.enabled:
-    - name: mariadb
-    - enable: True
-
 mariadb_service_running:
   service.running:
     - name: mariadb

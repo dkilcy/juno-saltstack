@@ -4,16 +4,23 @@ import socket
 
 def openstack_ip_assignments():
     grains = {} 
-    grains['openstack_mgmt_ip'] = get_ip_assignment('.mgmt')
-    grains['openstack_vm_ip'] = get_ip_assignment('.vm')
-    grains['openstack_pub_ip'] = get_ip_assignment('.pub')
-    return grains
 
-def get_ip_assignment(domain):
     try:
-      return socket.gethostbyname(socket.gethostname() + domain)
+        grains['openstack_mgmt_ip'] = socket.gethostbyname(socket.gethostname() + '.mgmt')
     except Exception as e:
-      return None
+        pass
+
+    try:
+        grains['openstack_vm_ip'] = socket.gethostbyname(socket.gethostname() + '.vm')
+    except Exception as e:
+        pass
+
+    try:
+        grains['openstack_pub_ip'] = socket.gethostbyname(socket.gethostname() + '.pub')
+    except Exception as e:
+        pass
+
+    return grains
 
 if __name__=='__main__':
     print socket.gethostname()

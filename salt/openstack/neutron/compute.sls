@@ -16,9 +16,9 @@ net.ipv4.conf.all.rp_filter:
   sysctl.present:
     - value: 0
 
-load_sysctl_openstack_compute:
-  cmd.run:
-    - name: sysctl -p
+#load_sysctl_openstack_compute:
+#  cmd.run:
+#    - name: sysctl -p
 
 openstack_neutron_compute_ml2:
   pkg.installed:
@@ -36,6 +36,13 @@ openstack_neutron_compute_openvswitch:
 {{ configure_compute_common( 'compute' ) }}
 ###########################################
 
+neutron_compute_auth_strategy:
+  openstack_config.present:
+    - filename: /etc/neutron/neutron.conf
+    - section: DEFAULT
+    - parameter: auth_strategy
+    - value: keystone
+
 neutron_compute_openvswitch_agent:
   file.copy:
     - name: /usr/lib/systemd/system/neutron-openvswitch-agent.service.orig
@@ -49,12 +56,14 @@ neutron_compute_openvswitch_agent_replace:
     - pattern: plugins/openvswitch/ovs_neutron_plugin.ini
     - repl: plugin.ini
 
-openvswitch_service_running:
+## TODO : restart
+openstack_nova_compute_service_running:
   service.running:
-    - name: openvswitch
+    - name: openstack-nova-compute
     - enable: True
 
-openvswitch_service_enable:
-  service.enabled:
-    - name: openvswitch
+openvswitch_service_running:
+  service.running:
+    - name: neutron-openvswitch-agent
+    - enable: True
 

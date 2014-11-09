@@ -52,6 +52,13 @@ openstack_neutron_openvswitch:
 {{ configure_ovs_common( 'network', instance_tunnels_interface_ip_address ) }}
 ####################################################################################
 
+neutron_network_auth_strategy:
+  openstack_config.present:
+    - filename: /etc/neutron/neutron.conf
+    - section: DEFAULT
+    - parameter: auth_strategy
+    - value: keystone
+
 neutron_network_conf_flat_networks:
   openstack_config.present:
     - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
@@ -189,14 +196,10 @@ neutron_metadata_agent_8:
 
 
 
-
 openvswitch_service_start:
   service.running:
     - name: openvswitch
-
-openvswitch_servce_enabled_on_boot:
-  service.enabled:
-    - name: openvswitch
+    - enable: True 
 
 openvswitch_add_integration_bridge:
   cmd.run:
@@ -205,7 +208,7 @@ openvswitch_add_integration_bridge:
 # TODO: fix eth2
 openvswitch_add_external_bridge_to_external_nic:
   cmd.run:
-    - name: ovs-vsctl add-port br-ex eth2
+    - name: ovs-vsctl add-port br-ex enp0s20f1
 
 # 
 neutron_network_openvswitch_agent:
@@ -225,33 +228,25 @@ neutron_network_neutron_openvswitch_agent:
 compute_openvswitch_agent_service_start:
   service.running:
     - name: neutron-openvswitch-agent
-
-compute_openvswitch_agent_service_enabled_on_boot:
-  service.enabled:
-    - name: neutron-openvswitch-agent
+    - enable: True
 
 compute_l3_agent_service_start:
   service.running:
     - name: neutron-l3-agent
-
-compute_l3_agent_service_enabled_on_boot:
-  service.enabled:
-    - name: neutron-l3-agent
+    - enable: True
 
 compute_dhcp_agent_service_start:
   service.running:
     - name: neutron-dhcp-agent
-
-compute_dhcp_agent_service_enabled_on_boot:
-  service.enabled:
-    - name: neutron-dhcp-agent
+    - enable: True
 
 compute_metadata_agent_service_start:
   service.running:
     - name: neutron-metadata-agent
+    - enable: True
 
-compute_metadata_agent_service_enabled_on_boot:
-  service.enabled:
-    - name: neutron-metadata-agent
+compute_cleanup_agent_service_start:
+  service.running:
+    - name: neutron-ovs-cleanup
 
 

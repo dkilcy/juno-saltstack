@@ -128,6 +128,12 @@ glance_conf_1:
 
 {{ configure_identity( 'glance-api_controller', '/etc/glance/glance-api.conf', 'glance', glance_pass ) }}
 
+glance_api_conf_paste_deploy:
+  openstack_config.present:
+    - filename: /etc/glance/glance-api.conf
+    - section: paste_deploy
+    - parameter: flavor
+    - value: keystone
 
 glance_api_conf_default_store:
   openstack_config.present:
@@ -150,8 +156,6 @@ glance_api_conf_verbose:
     - parameter: verbose
     - value: 'True'
 
-
-
 glance_registry_connection:
   openstack_config.present:
     - filename: /etc/glance/glance-registry.conf
@@ -161,7 +165,14 @@ glance_registry_connection:
 
 {{ configure_identity( 'glance-registry_controller', '/etc/glance/glance-registry.conf', 'glance', glance_pass ) }}
 
-glance_api_registry_verbose:
+glance_api_registry_conf_default_store:
+  openstack_config.present:
+    - filename: /etc/glance/glance-registry.conf
+    - section: paste_deploy
+    - parameter: flavor
+    - value: keystone
+
+glance_api_registry_conf_verbose:
   openstack_config.present:
     - filename: /etc/glance/glance-registry.conf
     - section: DEFAULT
@@ -174,7 +185,7 @@ glance_db_sync:
     - user: glance
     - group: glance
 
-## need below since cmd.run as root and clobbers the api log file permission
+## not sure if need below..
 
 /var/log/glance:
   file.directory:
@@ -201,11 +212,22 @@ glance_api_service:
   service.running:
     - name: openstack-glance-api
     - enable: True
+    - reload: True
+    - watch:
+      - file: /etc/glance/glance-api.conf
+
+  file.managed:
+    - name: /etc/glance/glance-api.conf
 
 glance_registry_service:
   service.running:
     - name: openstack-glance-registry
     - enable: True
+    - reload: True
+    - watch:
+      - file: /etc/glance/glance-registry.conf
 
+  file.managed:
+    - name: /etc/glance/glance-registry.conf
 
 

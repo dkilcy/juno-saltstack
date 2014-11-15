@@ -87,34 +87,32 @@ nova_grant_all:
       {%- if mysql_root_password %}
       - cmd: mysql_root_password
       {%- endif %}
-
-
-nova_user:
-  keystone.user_present:
-    - name: nova
-    - password: {{ nova_pass }}
-    - email: devops@workstation-02.mgmt
-    - roles:
-      - service:  # tenant
-        - admin   # role
-    - connection_token: {{ admin_token }}
-
-nova_identity_service:
-  keystone.service_present:
-    - name: nova
-    - service_type: compute
-    - description: 'OpenStack Compute'
-    - connection_token: {{ admin_token }}
-
-nova_api_endpoint:
-  keystone.endpoint_present:
-    - name: nova
-    - publicurl: 'http://{{ controller }}:8774/v2/%(tenant_id)s'
-    - internalurl: 'http://{{ controller }}:8774/v2/%(tenant_id)s'
-    - adminurl: 'http://{{ controller }}:8774/v2/%(tenant_id)s'
-    - region: regionOne
-    - connection_token: {{ admin_token }}
-
+##
+##nova_user:
+  #keystone.user_present:
+    #- name: nova
+    #- password: {{ nova_pass }}
+    #- email: devops@workstation-02.mgmt
+    #- roles:
+      #- service:  # tenant
+        #- admin   # role
+    #- connection_token: {{ admin_token }}
+#
+#nova_identity_service:
+  #keystone.service_present:
+    #- name: nova
+    #- service_type: compute
+    #- description: 'OpenStack Compute'
+    #- connection_token: {{ admin_token }}
+#
+#nova_api_endpoint:
+  #keystone.endpoint_present:
+    #- name: nova
+    #- publicurl: 'http://{{ controller }}:8774/v2/%(tenant_id)s'
+    #- internalurl: 'http://{{ controller }}:8774/v2/%(tenant_id)s'
+    #- adminurl: 'http://{{ controller }}:8774/v2/%(tenant_id)s'
+    #- region: regionOne
+    #- connection_token: {{ admin_token }}
 
 openstack_nova_api:
   pkg.installed:
@@ -210,34 +208,34 @@ nova_db_sync:
     - user: nova
     - group: nova
 
-nova_api_service:
-  service.running:
-    - name: openstack-nova-api
-    - enable: True
 
-nova_cert_service:
-  service.running:
-    - name: openstack-nova-cert
-    - enable: True
-
-nova_consoleauth_service:
-  service.running:
-    - name: openstack-nova-consoleauth
-    - enable: True
-
-nova_scheduler_service:
-  service.running:
-    - name: openstack-nova-scheduler
-    - enable: True
-
-nova_conductor_service:
-  service.running:
-    - name: openstack-nova-conductor
-    - enable: True
-
-nova_novncproxy_service:
-  service.running:
-    - name: openstack-nova-novncproxy
-    - enable: True
-
-
+#nova_api_service:
+  #service.running:
+    #- name: openstack-nova-api
+    #- enable: True
+#
+#nova_cert_service:
+  #service.running:
+    #- name: openstack-nova-cert
+    #- enable: True
+#
+#nova_consoleauth_service:
+  #service.running:
+    #- name: openstack-nova-consoleauth
+    #- enable: True
+#
+#nova_scheduler_service:
+  #service.running:
+    #- name: openstack-nova-scheduler
+    #- enable: True
+#
+#nova_conductor_service:
+  #service.running:
+    #- name: openstack-nova-conductor
+    #- enable: True
+#
+#nova_novncproxy_service:
+  #service.running:
+    #- name: openstack-nova-novncproxy
+    #- enable: True
+###

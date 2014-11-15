@@ -1,6 +1,10 @@
 
 {% set user_list = salt['pillar.get']('user_list') %}
 
+vim:
+  pkg.installed:
+    - name: {{ pillar['pkgs']['vim'] }}
+
 /root/.bashrc:
   file.append:
     - text: 
@@ -14,7 +18,7 @@
     - user: root
     - group: root
     - require:
-      - pkg: vim
+      - pkg: {{ pillar['pkgs']['vim'] }}
 
 {% for user in user_list %}
 
@@ -46,7 +50,7 @@
     - user: {{ user.name }}
     - group: {{ user.group }}
     - require: 
-      - pkg: vim
+      - pkg: {{ pillar['pkgs']['vim'] }} 
 
 /home/{{ user.name }}/.bashrc:
   file.append:

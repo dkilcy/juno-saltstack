@@ -84,13 +84,13 @@ nova_conf_verbose:
     - value: 'True'
 
 
-nova_libvirtd_service:
-  service.running:
-    - name: libvirtd
-    - enable: True
-
-nova_compute_service:
-  service.running:
-    - name: openstack-nova-compute
-    - enable: True
+#nova_libvirtd_service:
+#  service.running:
+#    - name: libvirtd
+#    - enable: True
+#
+#nova_compute_service:
+#  service.running:
+#    - name: openstack-nova-compute
+#    - enable: True
 

@@ -195,22 +195,22 @@ neutron_metadata_agent_8:
     - value: 'True'
 
 
-
-openvswitch_service_start:
-  service.running:
-    - name: openvswitch
-    - enable: True 
-
-openvswitch_add_integration_bridge:
-  cmd.run:
-    - name: ovs-vsctl add-br br-ex
-
-# TODO: fix eth2
-openvswitch_add_external_bridge_to_external_nic:
-  cmd.run:
-    - name: ovs-vsctl add-port br-ex enp0s20f1
-
-# 
+#
+#openvswitch_service_start:
+#  service.running:
+#    - name: openvswitch
+#    - enable: True 
+#
+#openvswitch_add_integration_bridge:
+#  cmd.run:
+#    - name: ovs-vsctl add-br br-ex
+#
+## TODO: fix eth2
+#openvswitch_add_external_bridge_to_external_nic:
+#  cmd.run:
+#    - name: ovs-vsctl add-port br-ex enp0s20f1
+#
+## 
 neutron_network_openvswitch_agent:
   file.copy:
     - name: /usr/lib/systemd/system/neutron-openvswitch-agent.service.orig
@@ -225,28 +225,25 @@ neutron_network_neutron_openvswitch_agent:
     - repl: plugin.ini
 
 #
-compute_openvswitch_agent_service_start:
-  service.running:
-    - name: neutron-openvswitch-agent
-    - enable: True
-
-compute_l3_agent_service_start:
-  service.running:
-    - name: neutron-l3-agent
-    - enable: True
-
-compute_dhcp_agent_service_start:
-  service.running:
-    - name: neutron-dhcp-agent
-    - enable: True
-
-compute_metadata_agent_service_start:
-  service.running:
-    - name: neutron-metadata-agent
-    - enable: True
-
-compute_cleanup_agent_service_start:
-  service.running:
-    - name: neutron-ovs-cleanup
-
-
+#
+#compute_openvswitch_agent_service_start:
+  #service.running:
+    #- name: neutron-openvswitch-agent
+    #- enable: True
+#
+#compute_l3_agent_service_start:
+  #service.running:
+    #- name: neutron-l3-agent
+    #- enable: True
+#
+#compute_dhcp_agent_service_start:
+  #service.running:
+    #- name: neutron-dhcp-agent
+    #- enable: True
+#
+#compute_metadata_agent_service_start:
+  #service.running:
+    #- name: neutron-metadata-agent
+    #- enable: True
+#
+##

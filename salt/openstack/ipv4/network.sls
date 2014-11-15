@@ -4,20 +4,21 @@
 
 ###
 
-{% set ipaddr = salt['grains.get']('openstack.mgmt_ip') %}
+{% set ipaddr = salt['grains.get']('openstack_mgmt_ip') %}
 
-/etc/sysconfig/network-scripts/ifcfg-enp0s20f0:
+enp0s20f0:
   network.managed:
-    - name: /etc/sysconfig/network-scripts/ifcfg-enp0s20f0
+    - name: enp0s20f0
     - enabled: True
     - type: eth
     - proto: none
     - ipaddr: {{ ipaddr }}
     - netmask: 255.255.255.0
+    - mtu: 9000
 
-/etc/sysconfig/network-scripts/ifcfg-enp0s20f1:
+enp0s20f1:
   network.managed:
-    - name: /etc/sysconfig/network-scripts/ifcfg-enp0s20f1
+    - name: enp0s20f1
     - enabled: True
     - type: eth
     - proto: none

@@ -31,3 +31,5 @@ openstack:
   controller: controller1
   network: network1
 
+  service_tenant_id: 0e2b836a683a49279766075788a5df24
+

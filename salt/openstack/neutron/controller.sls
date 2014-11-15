@@ -17,7 +17,7 @@
 {% set metadata_secret = salt['pillar.get']('openstack:METADATA_SECRET') %}
 
 # TODO: figure out a better way to assign the nova_admin_tenant_id
-{% set service_tenant_id = salt['pillar.get']('openstack:service_tenant_id','7d3ebdcf7cc246118f8fc200fc393416') %}
+{% set service_tenant_id = salt['pillar.get']('openstack:service_tenant_id') %}
 
 neutron_db:
   mysql_database.present:
@@ -95,33 +95,33 @@ neutron_grant_all:
 
 
 
-
-neutron_user:
-  keystone.user_present:
-    - name: neutron
-    - password: {{ neutron_pass }}
-    - email: devops@workstation-02.mgmt
-    - roles:
-      - service:  # tenant
-        - admin   # role
-    - connection_token: {{ admin_token }}
-
-neutron_network_service:
-  keystone.service_present:
-    - name: neutron
-    - service_type: network
-    - description: 'OpenStack Networking'
-    - connection_token: {{ admin_token }}
-
-neutron_api_endpoint:
-  keystone.endpoint_present:
-    - name: neutron
-    - publicurl: http://{{ controller }}:9696
-    - internalurl: http://{{ controller }}:9696
-    - adminurl: http://{{ controller }}:9696
-    - region: regionOne
-    - connection_token: {{ admin_token }}
-
+#
+#neutron_user:
+#  keystone.user_present:
+#    - name: neutron
+#    - password: {{ neutron_pass }}
+#    - email: devops@workstation-02.mgmt
+#    - roles:
+#      - service:  # tenant
+#        - admin   # role
+#    - connection_token: {{ admin_token }}
+#
+#neutron_network_service:
+#  keystone.service_present:
+#    - name: neutron
+#    - service_type: network
+#    - description: 'OpenStack Networking'
+#    - connection_token: {{ admin_token }}
+#
+#neutron_api_endpoint:
+#  keystone.endpoint_present:
+#    - name: neutron
+#    - publicurl: http://{{ controller }}:9696
+#    - internalurl: http://{{ controller }}:9696
+#    - adminurl: http://{{ controller }}:9696
+#    - region: regionOne
+#    - connection_token: {{ admin_token }}
+#
 
 
 
@@ -224,40 +224,42 @@ neutron_controller_conf_nova_admin_password:
 
 
 ##  2. Populate the database:
-
-neutron_database:
-  cmd.run:
-    - name: "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade juno"
-    - user: neutron
-    - group: neutron
+#
+#neutron_database:
+#  cmd.run:
+#    - name: "neutron-db-manage --config-file /etc/neutron/neutron.conf --config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade juno"
+#    - user: neutron
+#    - group: neutron
 
 ## 3. Restart the Compute services:
 
-openstack_nova_api_service:
-  service.running:
-    - name: openstack-nova-api
-    - enable: True
-    - reload: True
-
-openstack_nova_scheduler_service:
-  service.running:
-    - name: openstack-nova-scheduler
-    - enable: True
-    - reload: True
-
-openstack_nova_conductor_service:
-  service.running:
-    - name: openstack-nova-conductor
-    - enable: True
-    - reload: True
-
-## 4. Start the Networking service and configure it to start when the system boots:
-
-openstack_neutron_server_running:
-  service.running:
-    - name: neutron-server
-    - enable: True
-
+#
+#openstack_nova_api_service:
+#  service.running:
+#    - name: openstack-nova-api
+#    - enable: True
+#    - reload: True
+#
+#
+#openstack_nova_scheduler_service:
+  #service.running:
+    #- name: openstack-nova-scheduler
+    #- enable: True
+    #- reload: True
+#
+#openstack_nova_conductor_service:
+  #service.running:
+    #- name: openstack-nova-conductor
+    #- enable: True
+    #- reload: True
+#
+### 4. Start the Networking service and configure it to start when the system boots:
+#
+#openstack_neutron_server_running:
+  #service.running:
+    #- name: neutron-server
+    #- enable: True
+#
 
 # On the controller node, edit the /etc/nova/nova.conf file and complete the following action:
 

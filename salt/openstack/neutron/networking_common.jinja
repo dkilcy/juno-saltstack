@@ -65,7 +65,7 @@ neutron_{{ component }}_conf_type_drivers:
     - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
     - section: ml2
     - parameter: type_drivers
-    - value: 'flat, gre'
+    - value: 'flat,gre'
 
 neutron_{{ component }}_conf_tenant_network_types:
   openstack_config.present:

@@ -51,7 +51,7 @@ nova_{{ component }}_conf_url:
     - parameter: url
     - value: http://{{ controller }}:9696
 
-neutron_{{ component }}_conf_auth_strategy:
+neutron_{{ component }}_conf_neutron_auth_strategy:
   openstack_config.present:
     - filename: /etc/nova/nova.conf
     - section: neutron

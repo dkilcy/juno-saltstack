@@ -57,13 +57,13 @@ neutron_compute_openvswitch_agent_replace:
     - repl: plugin.ini
 
 ## TODO : restart
-openstack_nova_compute_service_running:
-  service.running:
-    - name: openstack-nova-compute
-    - enable: True
-
-openvswitch_service_running:
-  service.running:
-    - name: neutron-openvswitch-agent
-    - enable: True
+#openstack_nova_compute_service_running:
+#  service.running:
+#    - name: openstack-nova-compute
+#    - enable: True
+#
+#openvswitch_service_running:
+#  service.running:
+#    - name: neutron-openvswitch-agent
+#    - enable: True
 

@@ -1,12 +1,7 @@
 
 base:
-  '*':
-    - users
 
   'controller*':
-    - ntp
-#    - openstack.ipv4
-#    - openstack.ipv4.controller
     - openstack.utils
     - openstack.auth
     - mariadb
@@ -16,21 +11,16 @@ base:
 #    - openstack.nova.controller
 #    - openstack.neutron.controller
 #    - openstack.horizon
+    - openstack.cinder.controller
 #    - openstack.ceilometer.controller
 #    - openstack.ceilometer.glance
 
   'network*':
-    - ntp
-#    - openstack.ipv4
-#    - openstack.ipv4.network
     - openstack.utils
     - openstack.auth
 #    - openstack.neutron.network
     
   'compute*':
-    - ntp
-#    - openstack.ipv4
-#    - openstack.ipv4.compute
     - openstack.utils
     - openstack.auth
 #    - openstack.nova.compute
@@ -38,12 +28,11 @@ base:
 #    - openstack.ceilometer.compute
 
   'block*':
-#    - openstack.ipv4
-#    - openstack.ipv4.block
-    - ntp
+    - openstack.utils
+    - openstack.auth
+    - openstack.cinder.storage
 
   'object*':
-#    - openstack.ipv4
-#    - openstack.ipv4.object
-    - ntp
+    - openstack.utils
+    - openstack.auth
 

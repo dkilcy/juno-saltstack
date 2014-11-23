@@ -1,8 +1,10 @@
 
+teaming:
+  pkg.installed:
+    - name: teamd
+
 {% from "openstack/ipv4/ip.jinja" import setup_team_intf with context %}
 {% from "openstack/ipv4/ip.jinja" import setup_team_bond with context %}
-
-###
 
 {% set team = 'team0' %}
 {% for intf in ['enp0s20f0','enp0s20f1'] %}

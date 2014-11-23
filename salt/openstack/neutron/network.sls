@@ -17,17 +17,38 @@
 
 {% set instance_tunnels_interface_ip_address = salt['network.interfaces']()['team0']['inet'][0]['address'] %}
 
+#net.ipv4.conf.default.rp_filter:
+#  sysctl.present:
+#    - name: net.ipv4.conf.default.rp_filter
+#    - value: 0
+
+#net.ipv4.conf.all.rp_filter:
+#  sysctl.present:
+#    - name: net.ipv4.conf.all.rp_filter
+#    - value: 0
+
+#net.ipv4.ip_forward:
+#  sysctl.present:
+#    - name: net.ipv4.ip_forward
+#    - value: 1
+
 net.ipv4.conf.default.rp_filter:
-  sysctl.present:
-    - value: 0
+  file.append:
+    - name: /etc/sysctl.conf
+    - text:
+      - net.ipv4.conf.default.rp_filter=0
 
 net.ipv4.conf.all.rp_filter:
-  sysctl.present:
-    - value: 0
+  file.append:
+    - name: /etc/sysctl.conf
+    - text: 
+      - net.ipv4.conf.all.rp_filter=0
 
 net.ipv4.ip_forward:
-  sysctl.present:
-    - value: 1
+  file.append:
+    - name: /etc/sysctl.conf
+    - text:
+      - net.ipv4.ip_forward=1
 
 load_sysctl_openstack_neutron:
   cmd.run:
@@ -73,6 +94,17 @@ neutron_network_bridge_mappings:
     - parameter: bridge_mappings
     - value: 'external:br-ex'
 
+neutron_network_add_agent_section:
+  file.append:
+    - name: /etc/neutron/plugins/ml2/ml2_conf.ini
+    - text: '[agent]'
+
+neutron_network_agent:
+  openstack_config.present:
+    - filename: /etc/neutron/plugins/ml2/ml2_conf.ini
+    - section: agent
+    - parameter: tunnel_types
+    - value: gre
 
 ## To configure the Layer-3 (L3) agent
 ## The Layer-3 (L3) agent provides routing services for virtual networks.

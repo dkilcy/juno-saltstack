@@ -36,6 +36,7 @@ auth_setup:
         export RABBIT_PASS={{ pillar['openstack']['RABBIT_PASS'] }}
         export TROVE_DBPASS={{ pillar['openstack']['TROVE_DBPASS'] }}
         export TROVE_PASS={{ pillar['openstack']['TROVE_PASS'] }}
+        export SWIFT_PASS={{ pillar['openstack']['SWIFT_PASS'] }}
 
 admin_setup:
   file.managed:

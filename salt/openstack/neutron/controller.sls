@@ -173,6 +173,13 @@ neutron_controller_conf_notify_nova_on_port_data_changes:
     - parameter: notify_nova_on_port_data_changes
     - value: 'True'
 
+neutron_controller_conf_nova_url:
+  openstack_config.present:
+    - filename: /etc/neutron/neutron.conf
+    - section: DEFAULT
+    - parameter: nova_url
+    - value: http://{{ controller }}:8774/v2
+
 neutron_controller_conf_nova_admin_auth_url:
   openstack_config.present:
     - filename: /etc/neutron/neutron.conf

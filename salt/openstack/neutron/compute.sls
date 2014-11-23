@@ -8,17 +8,31 @@
 {% set neutron_pass = salt['pillar.get']('openstack:NEUTRON_PASS') %}
 {% set instance_tunnels_interface_ip_address = salt['network.interfaces']()['team1']['inet'][0]['address'] %}
 
+#net.ipv4.conf.default.rp_filter:
+#  sysctl.present:
+#    - name: net.ipv4.conf.default.rp_filter
+#    - value: 0
+
+#net.ipv4.conf.all.rp_filter:
+#  sysctl.present:
+#    - name: net.ipv4.conf.all.rp_filter
+#    - value: 0
+
 net.ipv4.conf.default.rp_filter:
-  sysctl.present:
-    - value: 0
+  file.append:
+    - name: /etc/sysctl.conf
+    - text:
+      - net.ipv4.conf.default.rp_filter=0
 
 net.ipv4.conf.all.rp_filter:
-  sysctl.present:
-    - value: 0
+  file.append:
+    - name: /etc/sysctl.conf
+    - text:
+      - net.ipv4.conf.all.rp_filter=0
 
-#load_sysctl_openstack_compute:
-#  cmd.run:
-#    - name: sysctl -p
+load_sysctl_openstack_compute:
+  cmd.run:
+    - name: sysctl -p
 
 openstack_neutron_compute_ml2:
   pkg.installed:

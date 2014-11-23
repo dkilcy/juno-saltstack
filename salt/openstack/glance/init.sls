@@ -89,7 +89,6 @@ glance_user:
   keystone.user_present:
     - name: glance
     - password: {{ glance_pass }}
-    - email: devops@workstation-02.mgmt
     - roles:
       - service:  # tenant
         - admin   # role

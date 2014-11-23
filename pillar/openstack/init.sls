@@ -27,9 +27,10 @@ openstack:
   CEILOMETER_PASS: d16c43e1a962a554c948
   TROVE_DBPASS: 8d2f0c22de016fe093f4
   TROVE_PASS: 18c357877c7120e6cca4
+  SWIFT_PASS: 0d882fe21dfe142ea3df
 
   controller: controller1
   network: network1
 
-  service_tenant_id: 0e2b836a683a49279766075788a5df24
+  service_tenant_id: 2d006b28b19b4c36b3b990fb863506c3
 

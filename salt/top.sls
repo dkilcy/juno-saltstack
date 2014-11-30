@@ -2,8 +2,8 @@
 base:
 
   'controller*':
-    - openstack.utils
-    - openstack.auth
+#    - openstack.utils
+#    - openstack.auth
     - mariadb
     - rabbitmq
 #    - openstack.keystone
@@ -11,7 +11,8 @@ base:
 #    - openstack.nova.controller
 #    - openstack.neutron.controller
 #    - openstack.horizon
-    - openstack.cinder.controller
+#    - openstack.cinder.controller
+    - openstack.swift.controller
 #    - openstack.ceilometer.controller
 #    - openstack.ceilometer.glance
 
@@ -30,9 +31,9 @@ base:
   'block*':
     - openstack.utils
     - openstack.auth
-    - openstack.cinder.storage
+#    - openstack.cinder.storage
 
   'object*':
     - openstack.utils
     - openstack.auth
-
+#    - openstack.swift.storage

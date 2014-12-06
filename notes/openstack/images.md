@@ -2,6 +2,20 @@
 #### Add Ubuntu Trusty 14.04 LTS AMD-64 image to Glance
 
 ```
+[devops@workstation2 tmp]$ wget https://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-disk1.img
+--2014-12-06 13:14:15--  https://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-disk1.img
+Resolving cloud-images.ubuntu.com (cloud-images.ubuntu.com)... 91.189.88.141, 2001:67c:1360:8001:ffff:ffff:ffff:fffe
+Connecting to cloud-images.ubuntu.com (cloud-images.ubuntu.com)|91.189.88.141|:443... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 256180736 (244M) [application/octet-stream]
+Saving to: ‘trusty-server-cloudimg-amd64-disk1.img.1’
+
+100%[==============================================================================================>] 256,180,736 3.40MB/s   in 72s    
+
+2014-12-06 13:15:27 (3.39 MB/s) - ‘trusty-server-cloudimg-amd64-disk1.img.1’ saved [256180736/256180736]
+
+[devops@workstation2 Downloads]$ source ~/openstack/auth-openrc.sh 
+[devops@workstation2 Downloads]$ source ~/openstack/admin-openrc.sh 
 [devops@workstation2 Downloads]$ glance image-create --name "trusty-server-cloudimg-amd64-disk1" --file trusty-server-cloudimg-amd64-disk1.img --disk-format qcow2 --container-format bare --is-public True --progress
 [=============================>] 100%
 +------------------+--------------------------------------+

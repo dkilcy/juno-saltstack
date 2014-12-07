@@ -12,9 +12,10 @@ base:
 #    - openstack.neutron.controller
 #    - openstack.horizon
 #    - openstack.cinder.controller
-    - openstack.swift.controller
-#    - openstack.ceilometer.controller
-#    - openstack.ceilometer.glance
+#    - openstack.swift.controller
+    - mongodb
+    - openstack.ceilometer.controller
+    - openstack.ceilometer.glance
 
   'network*':
     - openstack.utils
@@ -26,7 +27,7 @@ base:
     - openstack.auth
 #    - openstack.nova.compute
 #    - openstack.neutron.compute
-#    - openstack.ceilometer.compute
+    - openstack.ceilometer.compute
 
   'block*':
     - openstack.utils

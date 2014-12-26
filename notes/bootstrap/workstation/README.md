@@ -43,42 +43,16 @@ yum upgrade -y
 ```   
 6. Create the repository mirror  
 ```
-mkdir -p /data/repo/centos/7/x86_64/base
-mkdir -p /data/repo/centos/7/x86_64/updates
-mkdir -p /data/repo/centos/7/x86_64/extras
-mkdir -p /data/repo/centos/7/x86_64/epel
-mkdir -p /data/repo/centos/7/x86_64/openstack-juno
+cp /home/devops/git/juno-saltstack/files/workstation/bin/reposync.sh /root
+[root@workstation2 ~]# crontab -l
+0 4 * * * /root/reposync.sh > /root/reposync.out 2>&1
 
-createrepo /data/repo/centos/7/x86_64/base
-createrepo /data/repo/centos/7/x86_64/updates
-createrepo /data/repo/centos/7/x86_64/extras
-createrepo /data/repo/centos/7/x86_64/epel
-createrepo /data/repo/centos/7/x86_64/openstack-juno
-
-reposync -p /data/repo/centos/7/x86_64 --repoid=base
-reposync -p /data/repo/centos/7/x86_64 --repoid=updates
-reposync -p /data/repo/centos/7/x86_64 --repoid=extras
-reposync -p /data/repo/centos/7/x86_64 --repoid=epel
-reposync -p /data/repo/centos/7/x86_64 --repoid=openstack-juno
 
 sed "s/gpgcheck=1/gpgcheck=1\nenabled=0/g" /etc/yum.repos.d/CentOS-Base.repo > /etc/yum.repos.d/CentOS-Base.repo
 cp /home/devops/git/juno-saltstack/files/workstation/etc/yum.repos.d/local.repo /etc/yum.repos.d/local.repo
-```
-The createrepo program does not download the group information (i.e `yum grouplist` fails)
-It must be downloaded manually
-
-http://mirror.umd.edu/centos/7/os/x86_64/repodata/
-
-
-```
-cp /home/devops/Downloads/4b9ac2454536a901fecbc1a5ad080b0efd74680c6e1f4b28fb2c7ff419872418-c7-x86_64-comps.xml.gz comps.xml.gz
-gzip -d comps.xml.gz 
-cp comps.xml  /data/repo/centos/7/x86_64/base/
-createrepo -g comps.xml /data/repo/centos/7/x86_64/base
 
 yum clean all
 yum update
-
 yum grouplist
 ```
 

@@ -17,14 +17,18 @@
 #### Steps
 
 1. Install CentOS 7 GNOME desktop on Workstation  
+- Set the hostname if not already done: ` hostnamectl set-hostname workstation2.pub`
+
 2. Set security policies as root
 ```
 setenforce 0
-systemctl stop firewalld
-systemctl disable firewalld
+systemctl stop iptables.service
+systemctl disable iptables.service
 ```   
 3. Configure GitHub and pull juno-saltstack as devops user
 ```
+yum install git
+su - devops
 mkdir ~/git ; cd ~/git
 git clone https://github.com/dkilcy/juno-saltstack.git
 ```   
@@ -36,7 +40,7 @@ cp /home/devops/git/juno-saltstack/files/workstation/etc/hosts /etc/hosts
 5. Add the EPEL and OpenStack repositories  
 ```
 yum install -y yum-plugin-priorities
-yum install -y http://dl.fedoraproject.org/pub/epel/7/x86_64/e/epel-release-7-2.noarch.rpm
+yum install epel-release
 yum install -y http://rdo.fedorapeople.org/openstack-juno/rdo-release-juno.rpm
 yum update -y
 yum upgrade -y

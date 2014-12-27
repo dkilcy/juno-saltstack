@@ -17,7 +17,7 @@
 #### Steps
 
 1. Install CentOS 7 GNOME desktop on Workstation  
-- Set the hostname if not already done: ` hostnamectl set-hostname workstation2.pub`
+  - Set the hostname if not already done: ` hostnamectl set-hostname workstation2.pub`
 
 2. Set security policies as root
 ```

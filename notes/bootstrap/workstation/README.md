@@ -105,10 +105,10 @@ ntpq -p
 9. Setup DHCP server  (needs 10.x network first)
 ```
 yum install -y dhcp
-#mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.`date +%s`
-#cp /home/devops/git/juno-saltstack/files/workstation/etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf
-#systemctl start dhcpd.service
-#systemctl enable dhcpd.service
+mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.`date +%s`
+cp /home/devops/git/juno-saltstack/files/workstation/etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf
+systemctl start dhcpd.service
+systemctl enable dhcpd.service
 ```
 
 10. Setup salt master  

@@ -92,7 +92,12 @@ parted
 yum install -y httpd
 systemctl start httpd
 systemctl enable httpd
+
+ln -s /var/yum/repo /var/www/html/repo
+cp /home/devops/git/juno-saltstack/files/workstation/etc/yum.repos.d/local.repo /var/www/html/repo/
+cp /etc/hosts /var/www/html/repo/
 ```
+  
 
 8. Setup NTPD  
 ```

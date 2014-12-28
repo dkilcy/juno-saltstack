@@ -35,8 +35,10 @@ vm.vfs_cache_pressure = 50
 [root@workstation2 ~]# cat /sys/block/sda/queue/scheduler
 noop deadline [cfq] 
 
+```
+Add `elevator=deadline` to the end of GRUB_CMDLINE_LINUX in /etc/default/grub
+```
 grub2-mkconfig -o /boot/grub2/grub.cfg
-
 ```
 
 ##### References

@@ -124,6 +124,7 @@ hdparm \
 htop \
 iperf3 \
 lshw \
+minicom \
 ntp
 ```
 8. Setup NTPD  

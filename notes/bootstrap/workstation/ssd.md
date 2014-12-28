@@ -2,29 +2,15 @@
 #### SSD
 
 - Check if SSD has discard support: `cat /sys/block/sda/queue/discard_granularity`
+- Setup `dofstrim.sh` to execute once a week to trim the disk
+- Add `noatime` to /etc/fstab
 
 ```
-[root@workstation2 ~]# cat /root/dofstrim.sh
-#!/bin/sh
-
-# this cronjob will discard unused blocks on the ssd mounted filesystems
-
-# get the locally mounted block devices - those starting with "/dev:
-# run df -k, pipe the result through grep and save the sixth field in
-# in the mountpoint array
-mountpoint=( $(df -k | grep ^/dev | awk '{print $6}') )
-
-# loop through the array and run fstrim on every mountpoint
-for i in "${mountpoint[@]}"
-do
-/usr/sbin/fstrim -v $i;
-done
-echo "fstrim ran `date`"
+cp /home/devops/git/juno-saltstack/files/workstation/bin/dofstrim.sh /root/
 
 crontab -e
 ## Run every Saturday at 06:00
 0 6 * * 6 /root/dofstrim.sh > /root/dofstrim.out 2>&1
-
 
 [root@workstation2 ~]# 
 [root@workstation2 ~]# cat /etc/fstab

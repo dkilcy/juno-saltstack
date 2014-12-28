@@ -2,20 +2,6 @@
 
 ##### Tasks:
 
-  1. [] Install CentOS 7 GNOME Desktop
-  2. [] Set security policies
-  3. [] Configure GitHub and pull juno-saltstack
-  4. [] Set the hosts file
-  5. [] Add the EPEL and OpenStack repositories
-  6. [] Create the repository mirror
-  7. [] Setup apache
-  8. [] Setup NTPD
-  9. [] Setup DHCP server
-  10. [] Setup salt master
-  11. [] Create the kickstart image for nodes
-
-#### Steps
-
 1. Install CentOS 7 GNOME desktop on Workstation  
   - Set the hostname if not already done: ` hostnamectl set-hostname workstation2.pub`
 
@@ -25,6 +11,13 @@
 setenforce 0
 systemctl stop iptables.service
 systemctl disable iptables.service
+```
+
+3. Disable network manager
+```
+systemctl stop NetworkManager.service
+systemctl disable NetworkManager.service
+service network restart
 ```
 
 Allow devops user to sudo without a password
@@ -68,7 +61,7 @@ crontab -l
 cd /root
 ./reposync.sh
 
-sed "s/gpgcheck=1/gpgcheck=1\nenabled=0/g" /etc/yum.repos.d/CentOS-Base.repo > /etc/yum.repos.d/CentOS-Base.repo
+sed -i "s/gpgcheck=1/gpgcheck=1\nenabled=0/g" /etc/yum.repos.d/CentOS-Base.repo
 cp /home/devops/git/juno-saltstack/files/workstation/etc/yum.repos.d/local.repo /etc/yum.repos.d/local.repo
 
 yum clean all

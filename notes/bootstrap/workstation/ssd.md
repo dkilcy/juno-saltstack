@@ -22,7 +22,9 @@ done
 echo "fstrim ran `date`"
 
 crontab -e
-#0 3 * * * /root/dofstrim.sh > /root/dofstrim.out 2>&1
+## Run every Saturday at 06:00
+0 6 * * 6 /root/dofstrim.sh > /root/dofstrim.out 2>&1
+
 
 [root@workstation2 ~]# 
 [root@workstation2 ~]# cat /etc/fstab

@@ -96,28 +96,28 @@ systemctl enable httpd
 
 8. Setup NTPD  
 ```
-systemctl start ntpd
-systemctl enable ntpd
+yum install -y ntp
+systemctl start ntpd.service
+systemctl enable ntpd.service
 ntpq -p
 ```
 
-9. Setup DHCP server   
+9. Setup DHCP server  (needs 10.x network first)
 ```
 yum install -y dhcp
-mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.`date +%s`
-cp /home/devops/git/juno-saltstack/files/workstation/etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf
-systemctl start dhcpd
-systemctl enable dhcpd
+#mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.`date +%s`
+#cp /home/devops/git/juno-saltstack/files/workstation/etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf
+#systemctl start dhcpd.service
+#systemctl enable dhcpd.service
 ```
 
 10. Setup salt master  
 ```
-yum install salt-master
+yum -y install salt-master
 
-cd srv
-ln -s /home/devops/git/juno-saltstack/salt .
-ln -s /home/devops/git/juno-saltstack/salt .
-ln -s /home/devops/git/juno-saltstack/pillar .
+ln -s /home/devops/git/juno-saltstack/salt /srv/salt
+ln -s /home/devops/git/juno-saltstack/reactor /srv/reactor
+ln -s /home/devops/git/juno-saltstack/pillar /srv/pillar
 
 systemctl restart salt-master
 systemctl enable salt-master

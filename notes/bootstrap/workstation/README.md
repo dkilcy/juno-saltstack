@@ -20,6 +20,7 @@
   - Set the hostname if not already done: ` hostnamectl set-hostname workstation2.pub`
 
 2. Set security policies as root
+
 ```
 setenforce 0
 systemctl stop iptables.service
@@ -27,6 +28,7 @@ systemctl disable iptables.service
 ```
 
 3. Configure GitHub and pull juno-saltstack as devops user
+
 ```
 yum install git
 su - devops
@@ -35,6 +37,7 @@ git clone https://github.com/dkilcy/juno-saltstack.git
 ```   
 
 4. Set the hosts file as root
+
 ```
 mv /etc/hosts /etc/hosts.`date +%s`
 cp /home/devops/git/juno-saltstack/files/workstation/etc/hosts /etc/hosts

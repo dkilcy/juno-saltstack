@@ -30,7 +30,7 @@ systemctl disable iptables.service
 Allow devops user to sudo without a password
 ```
 visudo
-# devops   ALL=(ALL)       NOPASSWD: ALL
+devops   ALL=(ALL)       NOPASSWD: ALL
 ```
 
 3. Configure GitHub and pull juno-saltstack as devops user
@@ -128,10 +128,10 @@ systemctl enable salt-master
 yum groups install "MATE Desktop"
 ```
 
-If installing from minimal:
-```
-yum groups install "X-Windows-System"
-systemctl set-default graphical.target
-```
+  If installing from minimal:
+  ```
+  yum groups install "X-Windows-System"
+  systemctl set-default graphical.target
+  ```
 
 12. 

@@ -22,7 +22,7 @@ crontab -e
 # Accessible filesystems, by reference, are maintained under '/dev/disk'
 # See man pages fstab(5), findfs(8), mount(8) and/or blkid(8) for more info
 #
-UUID=0c72ca59-f942-4b8f-8221-20bb370d4865 /                       xfs     noatime,nobarrier        1 1
+UUID=0c72ca59-f942-4b8f-8221-20bb370d4865 /                       xfs     rw,noatime,nobarrier        1 1
 UUID=2726cf71-0eb1-4a8b-8024-c2c632cc8191 /boot                   xfs     defaults        1 2
 UUID=a2ce59e0-d42f-4773-b787-849773ece2d9 swap                    swap    defaults        0 0
 [root@workstation2 ~]# 

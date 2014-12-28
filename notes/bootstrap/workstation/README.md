@@ -27,6 +27,12 @@ systemctl stop iptables.service
 systemctl disable iptables.service
 ```
 
+Allow devops user to sudo without a password
+```
+visudo
+# devops   ALL=(ALL)       NOPASSWD: ALL
+```
+
 3. Configure GitHub and pull juno-saltstack as devops user
 
 ```
@@ -68,6 +74,17 @@ cp /home/devops/git/juno-saltstack/files/workstation/etc/yum.repos.d/local.repo 
 yum clean all
 yum update
 yum grouplist
+```
+
+1. Install additional software
+```
+yum -y install \
+gparted \
+hdparm \
+htop \
+iperf3 \
+lshw \
+parted
 ```
 
 7. Setup apache  

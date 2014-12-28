@@ -90,6 +90,7 @@ ln -s /var/yum/repo /var/www/html/repo
 cp /home/devops/git/juno-saltstack/files/workstation/etc/yum.repos.d/local.repo /var/www/html/repo/
 cp /etc/hosts /var/www/html/repo/
 ```
+  - SELinux policy: `grep httpd /var/log/audit/audit.log | audit2allow -M mypol; semodule -i mypol.pp`
   
 
 8. Setup NTPD  

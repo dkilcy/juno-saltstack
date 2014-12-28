@@ -15,6 +15,39 @@ systemctl disable iptables.service
 
 3. Disable network manager
 ```
+[devops@workstation2 juno-saltstack]$ cat /etc/sysconfig/network-scripts/ifcfg-enp5s0 
+TYPE=Ethernet
+BOOTPROTO=none
+DEFROUTE=yes
+IPV4_FAILURE_FATAL=no
+IPV6INIT=no
+IPV6_AUTOCONF=yes
+IPV6_DEFROUTE=yes
+IPV6_PEERDNS=yes
+IPV6_PEERROUTES=yes
+IPV6_FAILURE_FATAL=no
+NAME=enp5s0
+UUID=c8a39db7-76d4-438a-9a5f-d27b66089bbe
+ONBOOT=yes
+IPADDR0=192.168.1.6
+PREFIX0=24
+GATEWAY0=192.168.1.1
+DNS1=192.168.1.1
+HWADDR=00:01:C0:14:87:40
+
+
+[devops@workstation2 juno-saltstack]$ cat /etc/sysconfig/network-scripts/ifcfg-enp0s25 
+HWADDR=00:01:C0:14:87:37
+TYPE=Ethernet
+BOOTPROTO=none
+IPV6INIT=no
+NAME=enp0s25
+UUID=5bcd49c8-a3c0-4440-ac5b-ea2d70947a6d
+ONBOOT=yes
+IPADDR=10.0.0.6
+NETMASK=255.255.255.0
+
+
 systemctl stop NetworkManager.service
 systemctl disable NetworkManager.service
 service network restart
@@ -69,17 +102,6 @@ yum update
 yum grouplist
 ```
 
-1. Install additional software
-```
-yum -y install \
-gparted \
-hdparm \
-htop \
-iperf3 \
-lshw \
-parted
-```
-
 7. Setup apache  
 ```
 yum install -y httpd
@@ -93,21 +115,23 @@ cp /etc/hosts /var/www/html/repo/
   - SELinux policy: `grep httpd /var/log/audit/audit.log | audit2allow -M mypol; semodule -i mypol.pp`
   
 
+1. Install additional software
+```
+yum -y install \
+git \
+gparted \
+hdparm \
+htop \
+iperf3 \
+lshw \
+ntp
+```
 8. Setup NTPD  
 ```
 yum install -y ntp
 systemctl start ntpd.service
 systemctl enable ntpd.service
 ntpq -p
-```
-
-9. Setup DHCP server  (needs 10.x network first)
-```
-yum install -y dhcp
-mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.`date +%s`
-cp /home/devops/git/juno-saltstack/files/workstation/etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf
-systemctl start dhcpd.service
-systemctl enable dhcpd.service
 ```
 
 10. Setup salt master  
@@ -133,4 +157,12 @@ yum groups install "MATE Desktop"
   systemctl set-default graphical.target
   ```
 
-12. 
+9. Setup DHCP server
+```
+yum install -y dhcp
+mv /etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf.`date +%s`
+cp /home/devops/git/juno-saltstack/files/workstation/etc/dhcp/dhcpd.conf /etc/dhcp/dhcpd.conf
+systemctl start dhcpd.service
+systemctl enable dhcpd.service
+```
+ 

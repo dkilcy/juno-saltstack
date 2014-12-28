@@ -24,7 +24,8 @@
 setenforce 0
 systemctl stop iptables.service
 systemctl disable iptables.service
-```   
+```
+
 3. Configure GitHub and pull juno-saltstack as devops user
 ```
 yum install git
@@ -32,11 +33,13 @@ su - devops
 mkdir ~/git ; cd ~/git
 git clone https://github.com/dkilcy/juno-saltstack.git
 ```   
+
 4. Set the hosts file as root
 ```
 mv /etc/hosts /etc/hosts.`date +%s`
 cp /home/devops/git/juno-saltstack/files/workstation/etc/hosts /etc/hosts
 ```   
+
 5. Add the EPEL and OpenStack repositories  
 ```
 yum install -y yum-plugin-priorities
@@ -45,6 +48,7 @@ yum install -y http://rdo.fedorapeople.org/openstack-juno/rdo-release-juno.rpm
 yum update -y
 yum upgrade -y
 ```   
+
 6. Create the repository mirror  
 ```
 cp /home/devops/git/juno-saltstack/files/workstation/bin/reposync.sh /root

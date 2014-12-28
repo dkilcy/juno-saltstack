@@ -1,25 +1,25 @@
 [base]
 name=CentOS-$releasever - Base
-baseurl=http://yumrepo/repo/centos/7/x86_64/base/
+baseurl=http://yumrepo/repo/centos/$releasever/os/$basearch/
 gpgcheck=0
 enabled=1
 [updates]
 name=CentOS-$releasever - Updates
-baseurl=http://yumrepo/repo/centos/7/x86_64/updates/
+baseurl=http://yumrepo/repo/centos/$releasever/updates/$basearch/
 gpgcheck=0
 enabled=1
 [extras]
 name=CentOS-$releasever - Extras
-baseurl=http://yumrepo/repo/centos/7/x86_64/extras/
+baseurl=http://yumrepo/repo/centos/$releasever/extras/$basearch/
 gpgcheck=0
 enabled=1
 [epel]
-name=Extra Packages for Enterprise Linux 7 - $basearch
-baseurl=http://yumrepo/repo/centos/7/x86_64/epel
+name=Extra Packages for Enterprise Linux $releasever - $basearch
+baseurl=http://yumrepo/repo/centos/$releasever/epel/
 gpgcheck=0
 enabled=1
 [openstack-juno]
 name=OpenStack Juno Repository
-baseurl=http://yumrepo/repo/centos/7/x86_64/openstack-juno
+baseurl=http://yumrepo/repo/centos/$releasever/openstack-juno/
 gpgcheck=0
 enabled=1

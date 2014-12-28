@@ -48,9 +48,12 @@ yum upgrade -y
 6. Create the repository mirror  
 ```
 cp /home/devops/git/juno-saltstack/files/workstation/bin/reposync.sh /root
-[root@workstation2 ~]# crontab -l
+crontab -e
+crontab -l
 0 4 * * * /root/reposync.sh > /root/reposync.out 2>&1
 
+cd /root
+./reposync.sh
 
 sed "s/gpgcheck=1/gpgcheck=1\nenabled=0/g" /etc/yum.repos.d/CentOS-Base.repo > /etc/yum.repos.d/CentOS-Base.repo
 cp /home/devops/git/juno-saltstack/files/workstation/etc/yum.repos.d/local.repo /etc/yum.repos.d/local.repo
@@ -96,6 +99,15 @@ systemctl restart salt-master
 systemctl enable salt-master
 ```
 
-11. Create the kickstart image for nodes  
+11. Install MATE Desktop
+```
+yum groups install "MATE Desktop"
+```
+
+If installing from minimal:
+```
+yum groups install "X-Windows-System"
+systemctl set-default graphical.target
+```
 
 12. 

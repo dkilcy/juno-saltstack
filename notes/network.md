@@ -27,3 +27,9 @@ show interface vlan 1
 show system-info
 show ip http secure-server
 ```
+
+##### References
+
+[http://www.ccnpguide.com/end-to-end-vs-local-vlan-models/]
+[http://www.informit.com/library/content.aspx?b=CCNP_Studies_Switching&seqNum=44]
+[http://www.informit.com/library/content.aspx?b=CCNP_Studies_Switching&seqNum=18]

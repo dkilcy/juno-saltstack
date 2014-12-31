@@ -20,6 +20,7 @@ url --url=http://10.0.0.6/repo/centos/7/os/x86_64
 # repository
 repo --name="CentOS Base"   --baseurl=http://10.0.0.6/repo/centos/7/os/x86_64
 repo --name="CentOS Update" --baseurl=http://10.0.0.6/repo/centos/7/updates/x86_64
+repo --name="EPEL"          --baseurl=http://10.0.0.6/repo/centos/7/epel
 
 # Keyboard layouts
 keyboard --vckeymap=us --xlayouts='us'
@@ -100,6 +101,7 @@ openssh-clients
 parted
 pciutils
 rsync
+salt-minion
 tcpdump
 telnet
 traceroute
@@ -112,6 +114,8 @@ zip
 %post
 # cleanup the installation
 yum -y clean all
+
+systemctl enable salt-minion.servive
 
 %end
 ################################################################################

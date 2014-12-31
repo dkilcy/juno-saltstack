@@ -61,7 +61,6 @@ reboot --eject
 parted -s /dev/sda mklabel gpt
 parted -s /dev/sdb mklabel gpt
 parted -s /dev/sdc mklabel gpt
-
 %end
 ################################################################################
 %packages --nobase --ignoremissing
@@ -84,6 +83,7 @@ parted -s /dev/sdc mklabel gpt
 -NetworkManager*
 -wpa_supplicant
 dstat
+epel-release
 gparted
 hdparm
 htop
@@ -107,8 +107,6 @@ vim-enhanced
 wget
 yum-utils
 zip
-%end
-
 %end
 ################################################################################
 %post

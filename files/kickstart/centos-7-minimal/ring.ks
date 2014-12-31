@@ -60,8 +60,8 @@ reboot --eject
 ################################################################################
 %pre
 parted -s /dev/sda mklabel gpt
-parted -s /dev/sdb mklabel gpt
-parted -s /dev/sdc mklabel gpt
+parted -s -a optimal /dev/sdb mklabel gpt
+parted -s -a optimal /dev/sdc mklabel gpt
 %end
 ################################################################################
 %packages --nobase --ignoremissing

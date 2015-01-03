@@ -1,3 +1,39 @@
+#### Create USB stick with CentOS 7 Network Install image
+
+1. Copy the contents of the ISO to a directory
+```
+mkdir centos-7-netinstall
+cd centos-7-netinstall/
+cp /var/sw/images/CentOS-7.0-1406-x86_64-NetInstall.iso .
+mkdir in out
+mount -o loop CentOS-7.0-1406-x86_64-NetInstall.iso in
+cp -rT in/ out/
+```
+
+2. Modify the contents of the original ISO to load the kickstart configuration
+
+- Copy the kickstart file to ./out as ks.cfg
+- Edit the `isolinux/isolinux.cfg` file and do the following:
+    - Add `inst.ks=hd:sda1:/ks.cfg` to the **append** entry for the `label linux` entry. 
+    - Remove the `quiet` option.
+    - Update the menu label 
+    - Save the file
+
+3. Create the new ISO image
+
+```
+chmod 664 isolinux/isolinux.bin
+```
+TODO: figure out correct mkisofs command for USB stick....
+
+4. Burn the image to USB stick
+
+```
+#dd if=/dev/zero of=/dev/sdb bs=4096 count=512
+#below works with DVD or NetInstall image, not any others...
+#dd if=CentOS-7.0-1406-x86_64-NetInstall-ks.iso of=/dev/sdb bs=4096
+```
+
 #### Create a bootable CentOS 7 minimal image with custom kickstart configuration
 
 1. Copy the contents of the ISO to a directory

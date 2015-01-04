@@ -16,9 +16,9 @@ install
 
 # network
 network --bootproto=dhcp --device=enp0s20f0 --noipv6 --onboot=yes --mtu=9000 --activate
-network --bootproto=static --device=enp0s20f1 --noipv6 --onboot=no
-network --bootproto=static --device=enp0s20f2 --noipv6 --onboot=no
-network --bootproto=static --device=enp0s20f3 --noipv6 --onboot=no
+##network --bootproto=static --device=enp0s20f1 --noipv6 --onboot=no
+##network --bootproto=static --device=enp0s20f2 --noipv6 --onboot=no
+##network --bootproto=static --device=enp0s20f3 --noipv6 --onboot=no
 
 # installation path
 url --url=http://10.0.0.6/repo/centos/7/os/x86_64
@@ -45,31 +45,22 @@ selinux --disabled
 firewall --disabled
 
 # bootloader
-bootloader --location=mbr --boot-drive=sda
+bootloader --location=mbr --boot-drive=sdb
 # clear the MBR (Master Boot Record)
 zerombr
-# do not remove any partition (preserve the gpt label)
-#clearpart --none
 clearpart --all
 #ignoredisk --drives=sda
 
 # Disk partitioning information
-part /boot --fstype="ext4" --ondisk=sda --size=512 --fsoptions=rw,noatime,nodiratime
-part swap --fstype="swap" --ondisk=sda --size=4096
-part / --fstype="ext4" --ondisk=sda --size=1 --grow --fsoptions=rw,noatime,nodiratime
+part /boot --fstype="ext4" --ondisk=sdb --size=512 --fsoptions=rw,noatime,nodiratime
+part swap --fstype="swap" --ondisk=sdb --size=4096
+part / --fstype="ext4" --ondisk=sdb --size=1 --grow --fsoptions=rw,noatime,nodiratime
 
-part /scality/disk1 --fstype="ext4" --ondisk=sdb --size=1 --grow --fsoptions=rw,noatime,nodiratime
-part /scality/disk2 --fstype="ext4" --ondisk=sdc --size=1 --grow --fsoptions=rw,noatime,nodiratime
+part /var --fstype="ext4" --ondisk=sdc --size=1 --grow --fsoptions=rw,noatime,nodiratime
 
 # Reboot
 reboot --eject
 
-################################################################################
-#%pre
-#parted -s /dev/sdb mklabel gpt
-#parted -s -a optimal /dev/sdc mklabel gpt
-#parted -s -a optimal /dev/sdd mklabel gpt
-#%end
 ################################################################################
 %packages --nobase --ignoremissing
 @core

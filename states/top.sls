@@ -4,7 +4,7 @@ openstack:
   'G@environment:openstack':
     - yumrepo
 
-  '@Genvironment:openstack and role:controller':
+  'G@environment:openstack and G@role:controller':
     - openstack.utils
     - openstack.auth
 #    - mariadb
@@ -20,12 +20,12 @@ openstack:
 #    - openstack.ceilometer.controller
 #    - openstack.ceilometer.glance
 
-  'G@environment:openstack and role:network':
+  'G@environment:openstack and G@role:network':
     - openstack.utils
     - openstack.auth
 #    - openstack.neutron.network
 
-  'G@environment:openstack and role:compute':
+  'G@environment:openstack and G@role:compute':
     - openstack.utils
     - openstack.auth
 #    - openstack.nova.compute

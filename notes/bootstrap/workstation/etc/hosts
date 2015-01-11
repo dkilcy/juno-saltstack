@@ -1,0 +1,91 @@
+127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
+::1         localhost localhost.localdomain localhost6 localhost6.localdomain6
+
+###############################################################################
+# Network:
+# *.mgmt    - OpenStack Internal Network
+# *.pub     - Public Network
+# *.vm      - VM Traffic Network
+# *.store   - Storage Network
+###############################################################################
+
+10.0.0.5        workstation1.mgmt workstation1
+10.0.0.6        workstation2.mgmt workstation2 salt ntp yumrepo
+10.0.0.7        workstation3.mgmt workstation3
+
+10.0.0.11       controller1.mgmt  controller1
+10.0.0.12       controller2.mgmt  controller2
+
+10.0.0.21       network1.mgmt  network1
+10.0.0.22       network2.mgmt  network1
+
+10.0.0.31       compute1.mgmt  compute1
+10.0.0.32       compute2.mgmt  compute2
+10.0.0.33       compute3.mgmt  compute3
+10.0.0.34       compute4.mgmt  compute4
+10.0.0.35       compute5.mgmt  compute5
+10.0.0.36       compute6.mgmt  compute6
+
+10.0.0.41       block1.mgmt block1
+10.0.0.42       block2.mgmt block2
+10.0.0.43       block3.mgmt block3
+10.0.0.44       block4.mgmt block4
+10.0.0.45       block5.mgmt block5
+10.0.0.46       block6.mgmt block6
+
+10.0.0.51       object1.mgmt object1
+10.0.0.52       object2.mgmt object2
+10.0.0.53       object3.mgmt object3
+10.0.0.54       object4.mgmt object4
+10.0.0.55       object5.mgmt object5
+10.0.0.56       object6.mgmt object6
+
+10.0.0.61       ring-a1.mgmt ring-a1
+10.0.0.62       ring-a2.mgmt ring-a2
+10.0.0.63       ring-a3.mgmt ring-a3
+10.0.0.64       ring-a4.mgmt ring-a4
+10.0.0.65       ring-a5.mgmt ring-a5
+10.0.0.66       ring-a6.mgmt ring-a6
+10.0.0.67       ring-a7.mgmt ring-a7
+10.0.0.68       ring-a8.mgmt ring-a8
+
+10.0.1.21       network1.vm
+10.0.1.22       network2.vm
+
+10.0.1.31       compute1.vm
+10.0.1.32       compute2.vm
+10.0.1.33       compute3.vm
+10.0.1.34       compute4.vm
+10.0.1.35       compute5.vm
+10.0.1.36       compute6.vm
+
+10.0.1.41       block1.store
+10.0.1.42       block2.store
+10.0.1.43       block3.store
+10.0.1.44       block4.store
+10.0.1.45       block5.store
+10.0.1.46       block6.store
+
+10.0.1.51       object1.store
+10.0.1.52       object2.store
+10.0.1.53       object3.store
+10.0.1.54       object4.store
+10.0.1.55       object5.store
+10.0.1.56       object6.store
+
+10.0.1.61       ring-a1.store
+10.0.1.62       ring-a2.store
+10.0.1.63       ring-a3.store
+10.0.1.64       ring-a4.store
+10.0.1.65       ring-a5.store
+10.0.1.66       ring-a6.store
+10.0.1.67       ring-a7.store
+10.0.1.68       ring-a8.store
+
+192.168.1.5     workstation1.pub
+192.168.1.6     workstation2.pub
+192.168.1.7     workstation3.pub
+
+192.168.1.11    controller1.pub
+192.168.1.12    controller2.pub
+

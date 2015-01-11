@@ -2,7 +2,7 @@
 
 ##### Tasks:
 
-  1. [] Install CentOS 7 GNOME Desktop
+  1. [] Install CentOS 7 with MATE Desktop
   2. [] Set security policies
   3. [] Configure GitHub and pull juno-saltstack
   4. [] Set the hosts file
@@ -16,7 +16,7 @@
 
 #### Steps
 
-1. Install CentOS 7 GNOME desktop on Workstation  
+1. Install CentOS 7 with Mate Desktop  
 2. Set security policies as root
 ```
 setenforce 0
@@ -26,6 +26,7 @@ systemctl disable firewalld
 3. Configure GitHub and pull juno-saltstack as devops user
 ```
 mkdir ~/git ; cd ~/git
+git clone https://github.com/dkilcy/saltstack-base.git
 git clone https://github.com/dkilcy/juno-saltstack.git
 ```   
 4. Set the hosts file as root
@@ -42,39 +43,12 @@ yum update -y
 yum upgrade -y
 ```   
 6. Create the repository mirror  
+
+See reposync.sh
+
 ```
-mkdir -p /data/repo/centos/7/x86_64/base
-mkdir -p /data/repo/centos/7/x86_64/updates
-mkdir -p /data/repo/centos/7/x86_64/extras
-mkdir -p /data/repo/centos/7/x86_64/epel
-mkdir -p /data/repo/centos/7/x86_64/openstack-juno
-
-createrepo /data/repo/centos/7/x86_64/base
-createrepo /data/repo/centos/7/x86_64/updates
-createrepo /data/repo/centos/7/x86_64/extras
-createrepo /data/repo/centos/7/x86_64/epel
-createrepo /data/repo/centos/7/x86_64/openstack-juno
-
-reposync -p /data/repo/centos/7/x86_64 --repoid=base
-reposync -p /data/repo/centos/7/x86_64 --repoid=updates
-reposync -p /data/repo/centos/7/x86_64 --repoid=extras
-reposync -p /data/repo/centos/7/x86_64 --repoid=epel
-reposync -p /data/repo/centos/7/x86_64 --repoid=openstack-juno
-
 sed "s/gpgcheck=1/gpgcheck=1\nenabled=0/g" /etc/yum.repos.d/CentOS-Base.repo > /etc/yum.repos.d/CentOS-Base.repo
 cp /home/devops/git/juno-saltstack/files/workstation/etc/yum.repos.d/local.repo /etc/yum.repos.d/local.repo
-```
-The createrepo program does not download the group information (i.e `yum grouplist` fails)
-It must be downloaded manually
-
-http://mirror.umd.edu/centos/7/os/x86_64/repodata/
-
-
-```
-cp /home/devops/Downloads/4b9ac2454536a901fecbc1a5ad080b0efd74680c6e1f4b28fb2c7ff419872418-c7-x86_64-comps.xml.gz comps.xml.gz
-gzip -d comps.xml.gz 
-cp comps.xml  /data/repo/centos/7/x86_64/base/
-createrepo -g comps.xml /data/repo/centos/7/x86_64/base
 
 yum clean all
 yum update
@@ -105,15 +79,12 @@ systemctl start dhcpd
 systemctl enable dhcpd
 ```
 
-10. Setup salt master  
+10. Setup salt master
+
+See saltstack-base README.md
+
 ```
 yum install salt-master
-
-cd srv
-ln -s /home/devops/git/juno-saltstack/salt .
-ln -s /home/devops/git/juno-saltstack/salt .
-ln -s /home/devops/git/juno-saltstack/pillar .
-
 systemctl restart salt-master
 systemctl enable salt-master
 ```

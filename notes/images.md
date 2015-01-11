@@ -16,7 +16,13 @@ Saving to: ‘trusty-server-cloudimg-amd64-disk1.img.1’
 
 [devops@workstation2 Downloads]$ source ~/openstack/auth-openrc.sh 
 [devops@workstation2 Downloads]$ source ~/openstack/admin-openrc.sh 
-[devops@workstation2 Downloads]$ glance image-create --name "trusty-server-cloudimg-amd64-disk1" --file trusty-server-cloudimg-amd64-disk1.img --disk-format qcow2 --container-format bare --is-public True --progress
+[devops@workstation2 Downloads]$ glance image-create \
+  --name "trusty-server-cloudimg-amd64-disk1" \
+  --file trusty-server-cloudimg-amd64-disk1.img \
+  --disk-format qcow2 \
+  --container-format bare \
+  --is-public True \
+  --progress
 [=============================>] 100%
 +------------------+--------------------------------------+
 | Property         | Value                                |

@@ -1,7 +1,6 @@
 
-base:
-  '*':
-    - users
-    - pkg
-    - openstack
-
+openstack:
+  'G@environment:openstack':
+    - auth
+    - systems
+ 

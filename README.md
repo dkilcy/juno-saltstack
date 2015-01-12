@@ -48,6 +48,13 @@ salt '*' saltutil.refresh_pillar
 salt '*' saltutil.sync_all
 ```
 
+Set the grains for each machine
+```
+salt 'controller*' grains.setvals "{'environment':'openstack', 'role':'controller' }"
+salt 'compute*' grains.setvals "{'environment':'openstack', 'role':'compute' }"
+salt 'network*' grains.setvals "{'environment':'openstack', 'role':'network' }"
+```
+
 
 
 

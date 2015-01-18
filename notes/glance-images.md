@@ -113,6 +113,22 @@ glance image-create \
   --container-format bare \
   --is-public True \
   --progress
+  
+glance image-create \
+  --name "CentOS-6-x86_64-GenericCloud-20141129_01" \
+  --file CentOS-6-x86_64-GenericCloud-20141129_01.qcow2 \
+  --disk-format qcow2 \
+  --container-format bare \
+  --is-public True\
+  --progress
+
+glance image-create \
+  --name "CentOS-7-x86_64-GenericCloud-20141129_01" \
+   --file CentOS-7-x86_64-GenericCloud-20141129_01.qcow2 \
+   --disk-format qcow2 \
+   --container-format bare \
+   --is-public True \
+   --progress
  ```
  
 #### References

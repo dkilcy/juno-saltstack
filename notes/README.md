@@ -4,11 +4,6 @@
 4 x SuperMicro SuperServer 5018A-FTN4
 
 
-```
-[root@workstation2 ~]# salt --version
-salt 2014.7.0 (Helium)
-```
-
 #### History
 - Created README.md
 

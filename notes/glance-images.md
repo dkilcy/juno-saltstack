@@ -133,6 +133,12 @@ glance image-create \
  
 #### References
 
-[https://cloud-images.ubuntu.com/]
-[http://docs.openstack.org/image-guide/content/ch_obtaining_images.html]
+[Ubuntu Cloud Images][1]
+[Image resources - RDO][2]
+[OpenStack Virtual Machine Image Guide][3]
+
+[1]: https://cloud-images.ubuntu.com
+[2]: https://openstack.redhat.com/Image_resources
+[3]: http://docs.openstack.org/image-guide/content/index.html
+
 

@@ -171,10 +171,24 @@ ubuntu@demo-trusty1:~$ ip a
 ubuntu@demo-trusty1:~$ 
 
 ```
+### Example: Extracting password from OpenStack Windows image
+```
+[devops@workstation2 states]$ echo $OS_USERNAME
+admin
+[devops@workstation2 states]$ nova get-password demo-windows2012r2-2 ~/.ssh/id_rsa
+ERROR (CommandError): No server with a name or ID of 'demo-windows2012r2-2' exists.
+[devops@workstation2 states]$ nova get-password     8aafabed-dc06-409d-a807-bae22b87ec84  ~/.ssh/id_rsa
+Enter pass phrase for /home/devops/.ssh/id_rsa:
+I5mIdnjpEZXOKG
+[devops@workstation2 states]$ 
+```
+
 
 
 #### References
 
+[OpenStack Windows][2]
 [Launch an instance with OpenStack Networking (neutron)][1]
 
 [1]: http://docs.openstack.org/juno/install-guide/install/yum/content/launch-instance-neutron.html
+[2]: http://www.cloudbase.it/ws2012r2/

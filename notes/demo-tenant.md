@@ -21,11 +21,6 @@ nova secgroup-add-rule default tcp 22 22 0.0.0.0/0
 nova secgroup-list
 ```
 
-#### Create floating IP
-```
-neutron floatingip-create ext-net
-```
-
 #### Create VM
 ```
 nova boot \
@@ -36,6 +31,11 @@ nova boot \
   --key-name demo-key demo-instance1
   
 nova list
+```
+
+#### Create floating IP
+```
+neutron floatingip-create ext-net
 ```
 
 #### Associate floating IP with VM

@@ -1,4 +1,7 @@
 
+#### Notes
+
+```
 source auth-openrc.sh
 source admin-openrc.sh
 
@@ -34,5 +37,5 @@ swift-ring-builder object.builder add r1z1-10.0.0.51:6000/sda1 100
 swift-ring-builder object.builder add r1z1-10.0.0.51:6000/sdb1 100
 swift-ring-builder object.builder 
 swift-ring-builder object.builder rebalance
-
+```
 `

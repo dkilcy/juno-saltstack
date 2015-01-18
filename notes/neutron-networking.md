@@ -12,6 +12,7 @@ keystone user-role-add --user neutron --tenant service --role admin
 keystone service-create --name neutron --type network --description "OpenStack Networking"
 ```
 
+#### Create the endpoint
 ```
 keystone endpoint-create \
   --service-id $(keystone service-list | awk '/ network / {print $2}') \

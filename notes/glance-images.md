@@ -95,6 +95,28 @@ Saving to: ‘trusty-server-cloudimg-amd64-disk1.img.1’
 [devops@workstation2 Downloads]$ 
 ```
 
+#### Images
+
+```
+glance image-create \
+  --name "precise-server-cloudimg-amd64-disk1" \
+  --file precise-server-cloudimg-amd64-disk1.img \
+  --disk-format qcow2 \
+  --container-format bare \
+  --is-public True \
+  --progress
+
+glance image-create \
+  --name "windows_server_2012_r2_standard_eval_kvm_20140607" \
+  --file windows_server_2012_r2_standard_eval_kvm_20140607.qcow2 \
+  --disk-format qcow2 \
+  --container-format bare \
+  --is-public True \
+  --progress
+ ```
+ 
 #### References
 
 [https://cloud-images.ubuntu.com/]
+[http://docs.openstack.org/image-guide/content/ch_obtaining_images.html]
+

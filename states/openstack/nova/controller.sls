@@ -209,33 +209,33 @@ nova_db_sync:
     - group: nova
 
 
-#nova_api_service:
-  #service.running:
-    #- name: openstack-nova-api
-    #- enable: True
+nova_api_service:
+  service.running:
+    - name: openstack-nova-api
+    - enable: True
+
+nova_cert_service:
+  service.running:
+    - name: openstack-nova-cert
+    - enable: True
 #
-#nova_cert_service:
-  #service.running:
-    #- name: openstack-nova-cert
-    #- enable: True
+nova_consoleauth_service:
+  service.running:
+    - name: openstack-nova-consoleauth
+    - enable: True
 #
-#nova_consoleauth_service:
-  #service.running:
-    #- name: openstack-nova-consoleauth
-    #- enable: True
+nova_scheduler_service:
+  service.running:
+    - name: openstack-nova-scheduler
+    - enable: True
 #
-#nova_scheduler_service:
-  #service.running:
-    #- name: openstack-nova-scheduler
-    #- enable: True
+nova_conductor_service:
+  service.running:
+    - name: openstack-nova-conductor
+    - enable: True
 #
-#nova_conductor_service:
-  #service.running:
-    #- name: openstack-nova-conductor
-    #- enable: True
-#
-#nova_novncproxy_service:
-  #service.running:
-    #- name: openstack-nova-novncproxy
-    #- enable: True
+nova_novncproxy_service:
+  service.running:
+    - name: openstack-nova-novncproxy
+    - enable: True
 ###

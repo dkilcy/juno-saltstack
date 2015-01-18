@@ -241,6 +241,7 @@ neutron_metadata_agent_8:
 #openvswitch_add_external_bridge_to_external_nic:
 #  cmd.run:
 #    - name: ovs-vsctl add-port br-ex enp0s20f1
+#    - name: ovs-vsctl add-port br-ex enp0s20f2
 #
 ## 
 neutron_network_openvswitch_agent:

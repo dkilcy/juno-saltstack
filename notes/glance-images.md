@@ -1,5 +1,52 @@
 
-#### Add Ubuntu Trusty 14.04 LTS AMD-64 image to Glance
+#### Source the environment
+```
+unset OS_SERVICE_TOKEN OS_SERVICE_ENDPOINT
+source auth-openrc.sh
+source admin-openrc.sh
+```
+
+#### Create keystone user
+```
+keystone user-create --name glance --pass $GLANCE_PASS
+keystone user-role-add --user glance --tenant service --role admin
+keystone service-create --name glance --type image --description "OpenStack Image Service"
+keystone service-list
+```
+
+#### Create endpoint
+```
+keystone endpoint-create \
+  --service-id $(keystone service-list | awk '/ image / {print $2}') \
+  --publicurl http://controller1:9292 \
+  --internalurl http://controller1:9292 \
+  --adminurl http://controller1:9292 \
+  --region regionOne
+```
+
+#### Verify
+```
+keystone tenant-list
+keystone user-list
+keystone role-list
+keystone endpoint-list
+```
+
+#### Start glance service
+```
+systemctl enable openstack-glance-api.service openstack-glance-registry.service
+systemctl start openstack-glance-api.service openstack-glance-registry.service
+```
+
+##### Verify
+```
+wget http://cdn.download.cirros-cloud.net/0.3.3/cirros-0.3.3-x86_64-disk.img
+glance image-create --name "cirros-0.3.3-x86_64" --file cirros-0.3.3-x86_64-disk.img \
+  --disk-format qcow2 --container-format bare --is-public True --progress
+glance image-list
+```
+
+### Example: Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance
 
 ```
 [devops@workstation2 tmp]$ wget https://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-disk1.img
@@ -48,3 +95,6 @@ Saving to: ‘trusty-server-cloudimg-amd64-disk1.img.1’
 [devops@workstation2 Downloads]$ 
 ```
 
+#### References
+
+[https://cloud-images.ubuntu.com/]

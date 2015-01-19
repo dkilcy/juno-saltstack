@@ -1,8 +1,10 @@
 
 openstack-juno.repo:
-  file.managed:
-    - name: /etc/yum.repos.d/openstack-juno.repo
-    - source: salt://yumrepo/files/openstack-juno.repo
-#    - require: 
-#      - file: clean_yumrepo
-
+  file.append:
+    - name: /etc/yum.repos.d/local.repo
+    - text: |
+        [openstack-juno]
+        name=OpenStack Juno Repository
+        baseurl=http://yumrepo/repo/centos/$releasever/openstack-juno/
+        gpgcheck=0
+        enabled=1

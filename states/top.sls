@@ -24,11 +24,11 @@ openstack:
 #  'G@environment:openstack and G@role:network':
 #    - openstack.utils
 #    - openstack.auth
-#   - openstack.neutron.network
+#    - openstack.neutron.network
 
-#  'G@environment:openstack and G@role:compute':
-#    - openstack.utils
-#    - openstack.auth
+  'G@environment:openstack and G@role:compute':
+    - openstack.utils
+    - openstack.auth
 #    - openstack.nova.compute
 #    - openstack.neutron.compute
 #    - openstack.ceilometer.compute

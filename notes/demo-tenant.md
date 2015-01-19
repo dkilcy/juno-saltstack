@@ -184,8 +184,30 @@ I5mIdnjpEZXOKG
 ```
 
 ### Example: Connect to an OpenStack Windows image via RDP
-```
 
+- Install freerdp
+- Add port 3389 to default security group
+
+```
+yum install freerdp
+
+devops@workstation2 ~]$ xfreerdp -g 800x600 -u Admin 192.168.1.201
+connected to 192.168.1.201:3389
+Password: 
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+@           WARNING: CERTIFICATE NAME MISMATCH!           @
+@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+The hostname used for this connection (192.168.1.201) 
+does not match the name given in the certificate:
+demo-windows201
+A valid certificate for the wrong name should NOT be trusted!
+Certificate details:
+	Subject: CN = demo-windows201
+	Issuer: CN = demo-windows201
+	Thumbprint: 4c:3d:82:b3:f8:6c:ed:cf:5e:fc:ab:de:0a:09:8d:b8:53:84:27
+The above X.509 certificate could not be verified, possibly because you do not have the CA certificate in your certificate store, or the certificate has expired. Please look at the documentation on how to create local certificate store for a private CA.
+Do you trust the above certificate? (Y/N) Y
+```
 
 
 #### References

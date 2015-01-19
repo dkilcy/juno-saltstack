@@ -183,6 +183,9 @@ I5mIdnjpEZXOKG
 [devops@workstation2 states]$ 
 ```
 
+### Example: Connect to an OpenStack Windows image via RDP
+```
+
 
 
 #### References

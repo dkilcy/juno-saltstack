@@ -95,7 +95,56 @@ Saving to: ‘trusty-server-cloudimg-amd64-disk1.img.1’
 [devops@workstation2 Downloads]$ 
 ```
 
-#### Images
+#### Convert VMware VMDK images to OpenStack
+
+```
+[devops@workstation2 nagiosxi-64]$ ls -l
+total 2929236
+-rw-rw-r--. 1 devops devops       8684 Jan 21 13:32 nagiosxi-64.nvram
+-rw-rw-r--. 1 devops devops 2999517184 Jan 21 13:32 nagiosxi-64.vmdk
+-rw-rw-r--. 1 devops devops          0 Apr  5  2013 nagiosxi-64.vmsd
+-rw-rw-r--. 1 devops devops       2291 Jan 21 13:32 nagiosxi-64.vmx
+-rw-rw-r--. 1 devops devops        266 Apr  5  2013 nagiosxi-64.vmxf
+[devops@workstation2 nagiosxi-64]$ 
+[devops@workstation2 nagiosxi-64]$ qemu-img convert -f vmdk -O qcow2 nagiosxi-64.vmdk nagiosxi-64.qcow2
+[devops@workstation2 nagiosxi-64]$ ls -l
+total 7123224
+-rw-rw-r--. 1 devops devops       8684 Jan 21 13:32 nagiosxi-64.nvram
+-rw-r--r--. 1 devops devops 2479161344 Jan 21 20:07 nagiosxi-64.qcow2
+-rw-rw-r--. 1 devops devops 2999517184 Jan 21 13:32 nagiosxi-64.vmdk
+-rw-rw-r--. 1 devops devops          0 Apr  5  2013 nagiosxi-64.vmsd
+-rw-rw-r--. 1 devops devops       2291 Jan 21 13:32 nagiosxi-64.vmx
+-rw-rw-r--. 1 devops devops        266 Apr  5  2013 nagiosxi-64.vmxf
+[devops@workstation2 nagiosxi-64]$ 
+[devops@workstation2 nagiosxi-64]$ source ~/openstack/auth-openrc.sh 
+[devops@workstation2 nagiosxi-64]$ source ~/openstack/admin-openrc.sh 
+[devops@workstation2 nagiosxi-64]$ glance image-create --name "nagiosxi-64" --file nagiosxi-64.qcow2 --disk-format qcow2 --container-format bare --is-public True --progress 
+[=============================>] 100%
++------------------+--------------------------------------+
+| Property         | Value                                |
++------------------+--------------------------------------+
+| checksum         | c6247c0488e2065e2585f47c54b4a1b4     |
+| container_format | bare                                 |
+| created_at       | 2015-01-22T01:10:48                  |
+| deleted          | False                                |
+| deleted_at       | None                                 |
+| disk_format      | qcow2                                |
+| id               | 57e5beac-0309-4c4e-abb8-ef9b1c1da312 |
+| is_public        | True                                 |
+| min_disk         | 0                                    |
+| min_ram          | 0                                    |
+| name             | nagiosxi-64                          |
+| owner            | abe0a68c1ba84c2abcfca7cc342d4a3d     |
+| protected        | False                                |
+| size             | 2479161344                           |
+| status           | active                               |
+| updated_at       | 2015-01-22T01:11:15                  |
+| virtual_size     | None                                 |
++------------------+--------------------------------------+
+[devops@workstation2 nagiosxi-64]$ 
+```
+
+#### Notes
 
 ```
 glance image-create \

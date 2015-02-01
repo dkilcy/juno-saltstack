@@ -1,5 +1,5 @@
 
-[Example: Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance](1)
+[Example: Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance](#example-add-ubuntu-trusty-1404-lts-amd-64-cloud-image-to-glance)
 
 #### Source the environment
 ```

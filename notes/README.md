@@ -1,7 +1,7 @@
 
 ### OpenStack Juno deployment using SaltStack
 
-- [Lab Setup](#lab-setup)
+- [Lab Setup](lab-setup.md#lab-setup)
 
 
 #### History

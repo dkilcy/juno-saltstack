@@ -1,5 +1,6 @@
-4 x SuperMicro SuperServer 5018A-FTN4
+### Lab Setup
 
+- 4 x SuperMicro SuperServer 5018A-FTN4
 
 References
 

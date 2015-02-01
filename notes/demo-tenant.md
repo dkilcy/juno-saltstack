@@ -1,7 +1,7 @@
 
 - [Create VM from Ubuntu Trusty 14.04 LTS AMD-64 cloud image](#create-vm-from-ubuntu-trusty-1404-lts-amd-64-cloud-image)
-- [Extracting password from OpenStack Windows image](https://github.com/dkilcy/juno-saltstack/blob/master/notes/demo-tenant.md#extracting-password-from-openstack-windows-image)
-- [Connect to an OpenStack Windows image via RDP]()
+- [Extracting password from OpenStack Windows image](#extracting-password-from-openstack-windows-image)
+- [Connect to an OpenStack Windows image via RDP](#connect-to-an-openstack-windows-image-via-rdp)
 
 #### Source the environment
 ```
@@ -185,7 +185,7 @@ I5mIdnjpEZXOKG
 [devops@workstation2 states]$ 
 ```
 
-### Example: Connect to an OpenStack Windows image via RDP
+### Connect to an OpenStack Windows image via RDP
 
 - Install freerdp
 - Add port 3389 to default security group

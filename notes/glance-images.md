@@ -48,7 +48,6 @@ glance image-create --name "cirros-0.3.3-x86_64" --file cirros-0.3.3-x86_64-disk
 glance image-list
 ```
 
-[1]:
 ### Example: Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance
 
 ```

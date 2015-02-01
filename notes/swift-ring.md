@@ -1,5 +1,6 @@
 
 ## Swift - The Ring
+[OpenStack Swift: The Ring][https://www.youtube.com/watch?v=LzaQKKp58JI]
 
 #### Swift Basics
 - Swift is an object store.  Objects consist of a sequence of bytes and associated metadata
@@ -27,23 +28,28 @@ Linear scailability with no single point of failure.
 #### Hashing
 Now with all these servers and all this data, how does swift know where to find the data?
 It uses a modified consistent hashing ring. 
-Before talking about the modified hashing ring, talk about the basic consistent hashing ring
+Before talking about the modified consistent hashing ring, talk about the basic consistent hashing ring
 
 ##### Basic consistent hashing ring
-that would work with md5 (120 bit output space): write it around in a circle, hence the name ring.  0,1,2,3 up to 2^120 
-hash the nodes name and place at the appropriate location in the ring.
-if you want each node to be in more than 1 spot then append a suffix
-An example of 6 virtual nodes per real node.
+that would work with md5 (128 bit output space): write it around in a circle, hence the name ring.  0,1,2,3 up to 2^128-1 go on this ring
+then to add a node to the ring you hash the nodes name and place at appropriate location in the ring
+if you want each node to be in more than 1 spot then append a suffix in some repeatable way
+An example of 6 virtual nodes per real node. Node 1 is on there 6 times, node 2 is on there 6 times.
+More than 6 to have even distribution 
 
-When you make a change to the ring say add a node you get a small amount of your data moving
-Contrast with hash of the object name mod N
-If you go from 99 to 100 nodes and using hashmod(n) - just about all of the data has moved.
-went from hasmod(99) to hashmod(100) - 
+When you make a change to the ring, say add a node, you get a small amount of your data moving
 
-how many nodes to create? How many virtual nodes per real node? Start adding until you get an even distribution of data but not overboard, because more memory is used.
-100 virtual nodes for each real node.
+Contrast this with hash of the object name mod(n)
+If you go from 99 nodes to 100 nodes and using hashmod(n)
+went from hasmod(99) to hashmod(100) -  - just about all of the data has moved.
 
-time complexity in a sorted array is log(n) to find an items position in the ring
+Q: how many nodes to create? 
+A: How many virtual nodes per real node? Start adding until you get an even distribution of data but not overboard, because more memory is used. systems with 100 virtual nodes for each real node seems to be a good number.
+
+Nice thing about consistent hashing ring is go from 100 servers to 101 servers. 1% on average of data will move.
+If you were doing hashmod(n) all of your data, which is not a good characteristic of a storage system.
+
+Time complexity in a sorted array is log(n) to find an items position in the ring
 hash the objects name, find where it lands in the ring, and slide (binary search) 
 big O log n
 
@@ -70,9 +76,11 @@ bigger part_power -> bigger rings -> more memory used (but lookups stay fast)
 Err too big or too small? Err too big.  Better to trade off memory usage than to run with too few partions per disk. 
 
 ### Ring Internals
-2 main data structures: devs: array of device dicts
-_replica2part2dev - array of array 
+2 main data structures: 
+- _devs: array of device dicts
+- _replica2part2dev - array of array 
 
+Using the ring to find where to put data
 ```
 def get_nodes(self, account, container=None, obj=None):
     key = hash_path(account, container, obj, raw_digest=True)
@@ -83,6 +91,24 @@ def get_nodes(self, account, container=None, obj=None):
          if not r[[art] in seen_ids or seen_ids.add(r[part]))]
 ```
 
-#####References
-  [OpenStack Swift: The Ring][https://www.youtube.com/watch?v=LzaQKKp58JI]
-  
+### Building the ring
+
+The ring builder is something run offline.
+Run a command called swift-ring-builder.  Give it a builder file and can do things to the ring like add device, delete device or rebalance - take data off from partitions that have more than they need and put them on partions that have fewer than they need.  Creates an object.ring.gz file and distribute out to the cluster nodes.  Swift daemons pick it up automatically.
+
+How partitions are pl
+
+Keeping the data available in case of a move.
+If 1 replica gets moved, the others get locked down.
+Ensure 2 replicas of the data are always available on the primary node even when the data is being moved around
+min_part_hours
+
+Replica placement. Algorithm Swift uses is to keep data as far apart as possible. In a 3 zone setup, each
+replica goes to a zone.
+
+Swift achieves durability and availability
+expensive ring computations done offline, results distributed in a static file
+replicas kept far apart for maximum durability
+store copies on handoff nodes to make sure all the replicas are available.
+
+

@@ -1,5 +1,6 @@
 
-### demo-tenant.md
+[Create VM from Ubuntu Trusty 14.04 LTS AMD-64 cloud image](#Create VM from Ubuntu Trusty 14.04 LTS AMD-64 cloud image)
+
 
 #### Source the environment
 ```
@@ -44,7 +45,7 @@ nova floating-ip-associate demo-instance1 192.168.1.201
 ping 192.168.1.201
 ```
 
-### Example: Create VM from Ubuntu Trusty 14.04 LTS AMD-64 cloud image
+### Create VM from Ubuntu Trusty 14.04 LTS AMD-64 cloud image
 ```
 [devops@workstation2 openstack]$ nova boot \
 >   --flavor m1.medium \
@@ -212,8 +213,6 @@ Do you trust the above certificate? (Y/N) Y
 
 #### References
 
-[OpenStack Windows][2]
-[Launch an instance with OpenStack Networking (neutron)][1]
+[OpenStack Windows](http://docs.openstack.org/juno/install-guide/install/yum/content/launch-instance-neutron.html)
+[Launch an instance with OpenStack Networking (neutron)](http://www.cloudbase.it/ws2012r2/)
 
-[1]: http://docs.openstack.org/juno/install-guide/install/yum/content/launch-instance-neutron.html
-[2]: http://www.cloudbase.it/ws2012r2/

@@ -23,14 +23,11 @@ If server B lost the copy due to bit rot server A will push out a fresh copy, no
 #### Scalability
 Linear scailability with no single point of failure.  
 - Nodes can be added.  4x nodes = 4x capacity
-- 
-
 
 #### Hashing
 Now with all these servers and all this data, how does swift know where to find the data?
 It uses a modified consistent hashing ring. 
 Before talking about the modified hashing ring, talk about the basic consistent hashing ring
-
 
 ##### Basic consistent hashing ring
 that would work with md5 (120 bit output space): write it around in a circle, hence the name ring.  0,1,2,3 up to 2^120 
@@ -72,6 +69,9 @@ bigger part_power -> bigger rings -> more memory used (but lookups stay fast)
 10's of MB
 Err too big or too small? Err too big.  Better to trade off memory usage than to run with too few partions per disk. 
 
+### Ring Internals
+2 main data structures: devs: array of device dicts
+_replica2part2dev - array of array 
 
 ```
 def get_nodes(self, account, container=None, obj=None):
@@ -83,11 +83,6 @@ def get_nodes(self, account, container=None, obj=None):
          if not r[[art] in seen_ids or seen_ids.add(r[part]))]
 ```
 
-### Ring Internals
-2 main data structures: devs: array of device dicts
-_replica2part2dev - array of array 
-
- 
 #####References
   [OpenStack Swift: The Ring][https://www.youtube.com/watch?v=LzaQKKp58JI]
   

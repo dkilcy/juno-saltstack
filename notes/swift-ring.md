@@ -1,6 +1,6 @@
 
 ## Swift - The Ring
-[OpenStack Swift: The Ring][https://www.youtube.com/watch?v=LzaQKKp58JI]
+Notes from [OpenStack Swift: The Ring]([https://www.youtube.com/watch?v=LzaQKKp58JI)
 
 #### Swift Basics
 - Swift is an object store.  Objects consist of a sequence of bytes and associated metadata

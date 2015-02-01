@@ -2,6 +2,8 @@
 
 See also: https://github.com/dkilcy/saltstack-base
 
+![Node Deployment](node-deployment.png "Node Deployment")
+
 Contents:  
 
 - states: SaltStack state files  

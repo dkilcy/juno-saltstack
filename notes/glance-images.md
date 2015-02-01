@@ -1,7 +1,7 @@
 ## Glance - Technical Notes
 
-- [Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance](#add-ubuntu-trusty-1404-lts-amd-64-cloud-image-to-glance)  
-- [Convert VMware VMDK images to OpenStack](#convert-vmware-vmdk-images-to-openstack)
+- [Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance](#glance-images.md#add-ubuntu-trusty-1404-lts-amd-64-cloud-image-to-glance)  
+- [Convert VMware VMDK images to OpenStack](#glance-images.md#convert-vmware-vmdk-images-to-openstack)
 
 #### Source the environment
 ```

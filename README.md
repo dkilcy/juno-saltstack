@@ -2,7 +2,7 @@
 
 See also: https://github.com/dkilcy/saltstack-base
 
-![Node Deployment](#node-deployment.jpg Node Deployment)
+![Node Deployment](node-deployment.jpg "Node Deployment")
 
 Contents:  
 

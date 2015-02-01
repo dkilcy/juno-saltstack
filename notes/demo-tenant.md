@@ -1,7 +1,7 @@
 
-[Create VM from Ubuntu Trusty 14.04 LTS AMD-64 cloud image](#create-vm-from-ubuntu-trusty-1404-lts-amd-64-cloud-image)
-[Extracting password from OpenStack Windows image]()
-[Connect to an OpenStack Windows image via RDP]()
+- [Create VM from Ubuntu Trusty 14.04 LTS AMD-64 cloud image](#create-vm-from-ubuntu-trusty-1404-lts-amd-64-cloud-image)
+- [Extracting password from OpenStack Windows image](https://github.com/dkilcy/juno-saltstack/blob/master/notes/demo-tenant.md#extracting-password-from-openstack-windows-image)
+- [Connect to an OpenStack Windows image via RDP]()
 
 #### Source the environment
 ```

@@ -1,6 +1,7 @@
+## Glance - Technical Notes
 
-[Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance](#add-ubuntu-trusty-1404-lts-amd-64-cloud-image-to-glance)
-[Convert VMware VMDK images to OpenStack][#convert-vmware-vmdk-images-to-openstack]
+- [Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance](#add-ubuntu-trusty-1404-lts-amd-64-cloud-image-to-glance)  
+- [Convert VMware VMDK images to OpenStack](#convert-vmware-vmdk-images-to-openstack)
 
 #### Source the environment
 ```
@@ -98,7 +99,7 @@ Saving to: ‘trusty-server-cloudimg-amd64-disk1.img.1’
 [devops@workstation2 Downloads]$ 
 ```
 
-#### Convert VMware VMDK images to OpenStack
+### Convert VMware VMDK images to OpenStack
 
 ```
 [devops@workstation2 nagiosxi-64]$ ls -l

@@ -1,6 +1,7 @@
 
-[Create VM from Ubuntu Trusty 14.04 LTS AMD-64 cloud image](#Create VM from Ubuntu Trusty 14.04 LTS AMD-64 cloud image)
-
+[Create VM from Ubuntu Trusty 14.04 LTS AMD-64 cloud image](#create-vm-from-ubuntu-trusty-1404-lts-amd-64-cloud-image)
+[Extracting password from OpenStack Windows image]()
+[Connect to an OpenStack Windows image via RDP]()
 
 #### Source the environment
 ```
@@ -172,7 +173,7 @@ ubuntu@demo-trusty1:~$ ip a
 ubuntu@demo-trusty1:~$ 
 
 ```
-### Example: Extracting password from OpenStack Windows image
+### Extracting password from OpenStack Windows image
 ```
 [devops@workstation2 states]$ echo $OS_USERNAME
 admin

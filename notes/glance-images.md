@@ -1,4 +1,6 @@
 
+[Example: Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance][1]
+
 #### Source the environment
 ```
 unset OS_SERVICE_TOKEN OS_SERVICE_ENDPOINT
@@ -46,7 +48,7 @@ glance image-create --name "cirros-0.3.3-x86_64" --file cirros-0.3.3-x86_64-disk
 glance image-list
 ```
 
-### Example: Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance
+[1]: ### Example: Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance
 
 ```
 [devops@workstation2 tmp]$ wget https://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-disk1.img

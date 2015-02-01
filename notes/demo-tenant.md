@@ -1,3 +1,4 @@
+## Demo Tenant Examples 
 
 - [Create VM from Ubuntu Trusty 14.04 LTS AMD-64 cloud image](#create-vm-from-ubuntu-trusty-1404-lts-amd-64-cloud-image)
 - [Extracting password from OpenStack Windows image](#extracting-password-from-openstack-windows-image)
@@ -9,18 +10,22 @@ source auth-openrc.sh
 source demo-openrc.sh 
 ```
 
+#### View the current setup
+```
+nova keypair-list
+nova secgroup-list
+nova list
+```
+
 #### Add keypair
 ```
 nova keypair-add --pub-key ~/.ssh/id_rsa.pub demo-key
-nova keypair-list
 ```
 
-####
+#### Setup security rules to allow ICMP and SSH
 ```
 nova secgroup-add-rule default icmp -1 -1 0.0.0.0/0
 nova secgroup-add-rule default tcp 22 22 0.0.0.0/0
-
-nova secgroup-list
 ```
 
 #### Create VM
@@ -31,8 +36,6 @@ nova boot \
   --nic net-id=66456847-e3f2-47d1-9452-0f133894de50 \
   --security-group default \
   --key-name demo-key demo-instance1
-  
-nova list
 ```
 
 #### Create floating IP
@@ -191,6 +194,8 @@ I5mIdnjpEZXOKG
 - Add port 3389 to default security group
 
 ```
+nova secgroup-add-rule default tcp 3389 3389 0.0.0.0/0
+
 yum install freerdp
 
 devops@workstation2 ~]$ xfreerdp -g 800x600 -u Admin 192.168.1.201

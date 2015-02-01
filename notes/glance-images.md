@@ -1,5 +1,6 @@
 
-[Example: Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance](#example-add-ubuntu-trusty-1404-lts-amd-64-cloud-image-to-glance)
+[Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance](#add-ubuntu-trusty-1404-lts-amd-64-cloud-image-to-glance)
+[Convert VMware VMDK images to OpenStack][#convert-vmware-vmdk-images-to-openstack]
 
 #### Source the environment
 ```
@@ -48,7 +49,7 @@ glance image-create --name "cirros-0.3.3-x86_64" --file cirros-0.3.3-x86_64-disk
 glance image-list
 ```
 
-### Example: Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance
+### Add Ubuntu Trusty 14.04 LTS AMD-64 cloud image to Glance
 
 ```
 [devops@workstation2 tmp]$ wget https://cloud-images.ubuntu.com/trusty/current/trusty-server-cloudimg-amd64-disk1.img

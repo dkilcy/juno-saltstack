@@ -1,10 +1,10 @@
 
 openstack:
 
-  'G@environment:openstack':
+  'G@juno-saltstack':
     - yumrepo
 
-  'G@environment:openstack and G@role:controller':
+  'G@juno-saltstack:role:controller':
 #    - openstack.utils
 #    - openstack.auth
 #    - mariadb
@@ -21,23 +21,23 @@ openstack:
 #    - openstack.ceilometer.controller
 #    - openstack.ceilometer.glance
 
-#  'G@environment:openstack and G@role:network':
+#  'G@juno-saltstack:role:network':
 #    - openstack.utils
 #    - openstack.auth
 #    - openstack.neutron.network
 
-  'G@environment:openstack and G@role:compute':
+  'G@juno-saltstack:role:compute':
     - openstack.utils
     - openstack.auth
     - openstack.nova.compute
     - openstack.neutron.compute
 #    - openstack.ceilometer.compute
 
-#  'block*':
+#  'G@juno-saltstack:role:block':
 #    - openstack.utils
 #    - openstack.auth
 #    - openstack.cinder.storage
-#  'object*':
+#  'G@juno-saltstack:role:object':
 #    - openstack.utils
 #    - openstack.auth
 #    - openstack.swift.storage

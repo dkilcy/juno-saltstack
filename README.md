@@ -14,7 +14,7 @@ Contents:
 
 ##### Prerequesites
 
-- Salt Master is installed on the utility node.
+- Salt Master is installed on the utility (workstation) node.
 - Salt Minion is installed on all OpenStack nodes. 
 
 ### Update Salt Master

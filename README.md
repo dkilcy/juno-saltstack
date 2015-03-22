@@ -53,7 +53,7 @@ salt 'network*' grains.setvals "{'juno-saltstack:':{'role':'network'}}"
 
 3. Refresh and sync the minions:
 
-```
+```bash
 salt '*' saltutil.refresh_pillar
 salt '*' saltutil.sync_all
 ```

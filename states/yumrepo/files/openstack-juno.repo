@@ -1,0 +1,5 @@
+[openstack-juno]
+name=OpenStack Juno Repository
+baseurl=http://yumrepo/repo/centos/$releasever/openstack-juno/
+gpgcheck=0
+enabled=1

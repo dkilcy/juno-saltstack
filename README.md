@@ -1,6 +1,8 @@
-### juno-saltstack
+### Salt tools for OpenStack Juno
 
-See also: https://github.com/dkilcy/saltstack-base
+Dependencies: [dkilcy/saltstack-base](https://github.com/dkilcy/saltstack-base)
+
+Install OpenStack Juno in a 3+ node architecture with neutron networking on CentOS 7.
 
 ![Node Deployment](notes/node-deployment.png "Node Deployment")
 
@@ -10,19 +12,16 @@ Contents:
 - pillar: SaltStack pillar data  
 - notes : Documentation and sample configuration files  
 
+##### Prerequesites
 
-### Prepare Salt Master
+- Salt Master is installed on the utility (workstation) node.
+- Salt Minion is installed on all OpenStack nodes. 
 
-1. Add the Openstack repository and update.  
-(Note: The repo isn't available by rsync, so the local copy is updated using reposync )
-```
-yum install -y http://rdo.fedorapeople.org/openstack-juno/rdo-release-juno.rpm
-yum update -y
-yum upgrade -y
-```
+### Update Salt Master
 
-1. Add to /etc/salt/master.d/99-salt-envs.conf
-```
+1. Create /etc/salt/master.d/99-salt-envs.conf
+
+ ```yaml
 file_roots:
   base:
     - /srv/salt/base/states
@@ -36,27 +35,25 @@ pillar_roots:
     - /srv/salt/openstack/pillar
 ```
 
-2. Point SaltStack to the git repository on the Salt Master
+2. Point Salt to the git repository: `ln -sf ~/git/juno-saltstack /srv/salt/openstack`
+3. Restart the Salt Master: `systemctl restart salt-master.service`
 
-```
-ln -sf /home/devops/git/juno-saltstack /srv/salt/openstack
+### Update Salt Minions
+
+From the Salt master:
+
+1. Test connectivity to the pillars: `salt '*' test.ping`
+2. Set the grains for each machine
+
+ ```bash
+salt 'controller*' grains.setvals "{'juno-saltstack:':{'role':'controller'}}"
+salt 'compute*' grains.setvals "{'juno-saltstack:':{'role':'compute'}}"
+salt 'network*' grains.setvals "{'juno-saltstack:':{'role':'network'}}"
 ```
 
-Restart Salt Master after adding file.
-```
-systemctl restart salt-master.service
-salt '*' test.ping
+3. Refresh and sync the minions:
+
+ ```bash
 salt '*' saltutil.refresh_pillar
 salt '*' saltutil.sync_all
 ```
-
-Set the grains for each machine
-```
-salt 'controller*' grains.setvals "{'environment':'openstack', 'role':'controller' }"
-salt 'compute*' grains.setvals "{'environment':'openstack', 'role':'compute' }"
-salt 'network*' grains.setvals "{'environment':'openstack', 'role':'network' }"
-```
-
-
-
-

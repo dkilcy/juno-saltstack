@@ -46,9 +46,9 @@ From the Salt master:
 2. Set the grains for each machine
 
  ```bash
-salt 'controller*' grains.setvals "{'juno-saltstack:':{'role':'controller'}}"
-salt 'compute*' grains.setvals "{'juno-saltstack:':{'role':'compute'}}"
-salt 'network*' grains.setvals "{'juno-saltstack:':{'role':'network'}}"
+salt 'controller*' grains.setvals "{'juno-saltstack':{'role':'controller'}}"
+salt 'compute*' grains.setvals "{'juno-saltstack':{'role':'compute'}}"
+salt 'network*' grains.setvals "{'juno-saltstack':{'role':'network'}}"
 ```
 
 3. Refresh and sync the minions:

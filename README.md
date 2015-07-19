@@ -1,5 +1,8 @@
 ### Salt tools for OpenStack Juno
 
+This project **Deprecated** and no longer being actively maintained. OpenStack Kilo is out.  See [dkilcy/kilo-saltstack](https://github.com/dkilcy/kilo-saltstack)
+
+
 Dependencies: [dkilcy/saltstack-base](https://github.com/dkilcy/saltstack-base)
 
 Install OpenStack Juno in a 3+ node architecture with neutron networking on CentOS 7.

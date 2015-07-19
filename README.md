@@ -1,6 +1,6 @@
 ### Salt tools for OpenStack Juno
 
-This project **Deprecated** and no longer being actively maintained. OpenStack Kilo is out.  See [dkilcy/kilo-saltstack](https://github.com/dkilcy/kilo-saltstack)
+This project is **Deprecated** and no longer being actively maintained. OpenStack Kilo is out.  See [dkilcy/kilo-saltstack](https://github.com/dkilcy/kilo-saltstack)
 
 
 Dependencies: [dkilcy/saltstack-base](https://github.com/dkilcy/saltstack-base)
